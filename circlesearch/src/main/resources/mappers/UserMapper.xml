@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capstone.circle-search.Model.dao.UserDAO">
+
+    <select id="selectUsers" parameterType="com.capstone.CircleSearch.Model.dto.UserDTO"
+            resultType="com.capstone.CircleSearch.Model.dto.UserDTO">
+        SELECT * FROM USER_tb
+        <if test="name != null and name != ''">
+            WHERE USER_NAME = #{name}
+        </if>
+    </select>
+
+    <insert id="insertUsers" parameterType="com.capstone.CircleSearch.Model.dto.UserDTO" keyProperty="id">
+        INSERT INTO USER_tb(USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_EMAIL) VALUES(#{id}, #{pw}, #{name}, #{birth}, #{email})
+    </insert>
+
+
+</mapper>
