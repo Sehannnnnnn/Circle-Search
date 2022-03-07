@@ -6,12 +6,15 @@ import { useSelector } from 'react-redux';
 function HomePage() {
   const [message, setMessage]=useState([]);
   const loginCheck = useSelector(state => state.auth.login)
+  
     useEffect(()=>{
       axios.get("/hello")
           .then((res)=>{
             setMessage(res.data)
           });
     },[]);
+
+    console.log(loginCheck)
   return (
   <div>
      <h1>{message}</h1>

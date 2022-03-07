@@ -1,4 +1,5 @@
-import React , {useState} from 'react';
+import { TextField, Box, Button, Container, Grid, Link } from '@mui/material';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginSuccess } from '../../../Slices/authSlice';
@@ -10,7 +11,7 @@ function LoginPage() {
 
     const [userID, setuserID] = useState("");
     const [userPW, setuserPW] = useState("");
-    
+
     const onIDHandler = (event) => {
         setuserID(event.currentTarget.value)
     }
@@ -39,26 +40,54 @@ function LoginPage() {
         // }).then(resposne => console.log('Success:',resposne))
         // .catch(error => console.error('Error:', error));
     }
-    
+
     return (
-    <div>
-        <div style={{
-                display: 'flex', justifyContent: 'center'
-                , width: '100%', height: '100vh'
-            }}>
-                <form style={{display:'flex', flexDirection: 'column'}} onSubmit={onSubmitHandler}>
-                    <h2>로그인</h2>
-                    <label>ID</label>
-                    <input type="ID" value={userID} onChange={onIDHandler}/>
-                    <label>PW</label>
-                    <input type="password" value={userPW} onChange={onPWHandler}/>
-                    <br/>
-                    <button type="submit">
-                        Login
-                    </button>
-                </form>
-            </div>
-    </div>
+        <div>
+            <Container component="main" maxWidth="xs">
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        border: '2',
+                        bgcolor: 'white',
+                        borderRadius: 5,
+                        borderColor: 'grey.500',  
+                        padding: 2
+                    }}>
+                    <Box component="form" onSubmit={onSubmitHandler} sx={
+                        { mt: 1 }
+                    }>
+                        <h2>로그인</h2>
+                        <TextField required margin="normal" id="outlined-required" fullWidth label="아이디" color="success" value={userID} onChange={onIDHandler} />
+                        <TextField required maring="normal" id="outlined-password-input" fullWidth label="비밀번호" type="password" color="success" value={userPW} onChange={onPWHandler} />
+                        <br />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color='success'
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            로그인 하기
+                        </Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <Link href="#" variant="body2">
+                                    아이디 찾기
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link href="#" variant="body2">
+                                    회원가입 하기
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+            </Container>
+        </div>
     );
 }
 

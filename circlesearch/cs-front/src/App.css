@@ -11,7 +11,7 @@ a:hover, a:active { text-decoration: none; }
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
@@ -25,16 +25,15 @@ a:hover, a:active { text-decoration: none; }
 }
 
 .main_container {
-  grid-column: 2/5;
+  grid-column: 2/6;
   background-color: white;
-  border: 1px solid grey;
   border-top: 0px;
   border-bottom: 0px;
   height: 2000px;
 }
 
 .right_sidebar {
-  grid-column: 5;
+  grid-column: 6;
   background-color: beige;
   border: 1px solid grey;
   border-top: 0px;
