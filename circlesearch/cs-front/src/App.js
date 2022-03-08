@@ -10,7 +10,6 @@ import TopPannel from './Components/TopPannel/TopPannel';
 import RegisterPage1 from './Components/View/Register/RegisterPage1';
 import RegisterPage2 from './Components/View/Register/RegisterPage2';
 import { Container } from '@mui/material';
-import { useSelector } from 'react-redux';
 
 function App() {
   return (
@@ -32,7 +31,7 @@ function App() {
       right_sidebar
     </Container>
     </div>
-      </div>
+    </div>
   );
 }
 

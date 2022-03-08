@@ -6,19 +6,8 @@ import Navbar from './Navbar'
 
 function TopPannel() {
     const isLoggedIn = useSelector(state => state.auth.login)
-    const [loginCheck, setloginCheck] = useState(isLoggedIn);
-    setloginCheck(isLoggedIn)
-
-    useEffect(() => {
-      setloginCheck(isLoggedIn)
-      return () => {
-      }
-    }, [])
     
-    console.log('1:',isLoggedIn);
-    console.log('2:', loginCheck)
-    
-    if (loginCheck) {
+    if (isLoggedIn) {
         return (
         <UserGreeting/>
         )

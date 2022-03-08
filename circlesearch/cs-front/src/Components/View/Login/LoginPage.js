@@ -50,7 +50,7 @@ function LoginPage() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        border: '2',
+                        border: 2,
                         bgcolor: 'white',
                         borderRadius: 5,
                         borderColor: 'grey.500',  
@@ -61,7 +61,7 @@ function LoginPage() {
                     }>
                         <h2>로그인</h2>
                         <TextField required margin="normal" id="outlined-required" fullWidth label="아이디" color="success" value={userID} onChange={onIDHandler} />
-                        <TextField required maring="normal" id="outlined-password-input" fullWidth label="비밀번호" type="password" color="success" value={userPW} onChange={onPWHandler} />
+                        <TextField required margin="normal" id="outlined-password-input" fullWidth label="비밀번호" type="password" color="success" value={userPW} onChange={onPWHandler} />
                         <br />
                         <Button
                             type="submit"

@@ -39,8 +39,8 @@ export const ValidatePW = (props) => {
 export const ConfirmPW = (props) => {
     const userPW = props.userPW
     const userCheckPW = props.userCheckPW
-    if (userCheckPW == null) {
-        return null
+    if (userCheckPW == undefined) {
+        return 
     }
     if (userPW === userCheckPW) {
         console.log('확인되었습니다.')

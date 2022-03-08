@@ -21,7 +21,7 @@ export function AlertPW(props) {
         )
     } else {
         return (
-            <p>비밀번호 형식은 8~16자리 영문,숫자,특수기호 조합입니다.</p>
+            <p>비밀번호는 8~16자리 영문,숫자,특수기호 조합입니다.</p>
         )
     }
 }

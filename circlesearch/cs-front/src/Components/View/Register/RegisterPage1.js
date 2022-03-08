@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import { ConfirmPW, ValidateEmail, ValidateID, ValidatePW } from './confirmRegister';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Container, TextField, Button, Divider } from '@mui/material';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import { Box } from '@mui/system';
 
 function RegisterPage1() {
 
@@ -27,9 +32,6 @@ function RegisterPage1() {
     const onNameHandler = (event) => {
         setuserName(event.currentTarget.value)
     }
-    const onBirthHandler = (event) => {
-        setuserBirth(event.currentTarget.value)
-    }
     
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -48,34 +50,64 @@ function RegisterPage1() {
     }
   return (
   <div>
-      <div style={{
-                display: 'flex', justifyContent: 'center'
-                , width: '100%', height: '100vh'
+    <Container component="main" minWidth="sm">
+        <Box
+            sx={{
+                marginTop: 5,
+                display: 'flex',
+                minWidth: 'sm',
+                flexDirection: 'column',
+                border: 2,
+                bgcolor: 'white',
+                borderRadius: 5,
+                borderColor: 'grey.500',  
+                padding: 10
             }}>
-                <form style={{display:'flex', flexDirection: 'column'}}
-                onSubmit = {onSubmitHandler}>
-                <label>아이디</label>
-                <input type="ID" value={userID} onChange={onIdHandler}/>
-                <ValidateID userID={userID}/>
-                <label>비밀번호</label>
-                <input type="password" value={userPW} onChange={onPwHandler}/>
-                <ValidatePW userPW={userPW}/>
-                <label>비밀번호 확인</label>
-                <input type="password" value={userCheckPW} onChange={onCheckPwHandler}/>
+            <h2>회원가입</h2>
+            <Divider></Divider>
+            <h3>로그인 정보</h3>
+            <Box component="form" onSubmit={onSubmitHandler} sx={{mt:1}}>
+            <ValidateID userID={userID}/>
+                <TextField required margin="normal" id="outlined-required" label="아이디"
+                fullWidth value={userID} onChange={onIdHandler}/>
+            <Button>아이디 중복체크</Button>
+            <ValidatePW userPW={userPW}/>
+                <TextField required margin='normal' id='outlined-password-input'  fullWidth label="비밀번호" type="password" color='success' value={userPW} onChange={onPwHandler}/>
+                <TextField required margin='normal' id='outlined-requried' label='비밀번호 확인' fullWidth type='password' color='success' value={userCheckPW} onChange={onCheckPwHandler}/>
                 <ConfirmPW userPW={userPW} userCheckPW={userCheckPW}/>
-                <label>이름</label>
-                <input type="name" value={userName} onChange={onNameHandler}/>
-                <label>생년 월일</label>
-                <input type="date" value={userBirth} onChange={onBirthHandler}/>
-                <label>이메일</label>
-                <input type="email" value={userEmail} onChange={onEmailHandler}/>
-                <ValidateEmail userEmail={userEmail} />
+                <Divider sx={{marginTop: 5, marginBottom: 5}}></Divider>
+            <h3>회원 정보</h3>
+                <TextField required margin="normal" id="outlined-required" label="이름" fullWidth value={userName} onChange={onNameHandler}/>
+                <ValidateEmail userEmail={userEmail}/>
+                <TextField required margin='normal' id='outlined-requried' label='이메일' fullWidth type='email' color='success' sx = {{marginBottom:3}}value={userEmail} onChange={onEmailHandler}/>
+                <p>생년 월일을 선택해 주세요</p>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                    displayStaticWrapperAs="desktop"
+                    openTo="year"
+                    value={userBirth}
+                    margin="normal"
+                    label='생년 월일'
+                    onChange={(newValue) => {
+                    setuserBirth(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                />
+                </LocalizationProvider>
                 <br/>
-                <button typt="submit">
-                    회원가입
-                </button>
-            </form>
-            </div>
+                <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color='success'
+                            sx={{ mt: 10, mb: 2,
+                            height: '50px' }}
+                        >
+                            다음 단계 진행
+                        </Button>
+            </Box>
+        </Box>
+    </Container>
     </div>
     )
 }
