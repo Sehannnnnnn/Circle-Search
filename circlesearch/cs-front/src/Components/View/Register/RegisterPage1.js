@@ -33,6 +33,13 @@ function RegisterPage1() {
         setuserName(event.currentTarget.value)
     }
     
+    const onCheckIDHandler = (event) => {
+        event.preventDefault()
+        console.log(userID)
+        axios.get('/user/register1/checkID', {params : {userID: userID}}).then((response) =>
+        console.log(response))
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault();
         console.log(userID, userPW)
@@ -70,7 +77,7 @@ function RegisterPage1() {
             <ValidateID userID={userID}/>
                 <TextField required margin="normal" id="outlined-required" label="아이디"
                 fullWidth value={userID} onChange={onIdHandler}/>
-            <Button>아이디 중복체크</Button>
+            <Button onClick={onCheckIDHandler}>아이디 중복체크</Button>
             <ValidatePW userPW={userPW}/>
                 <TextField required margin='normal' id='outlined-password-input'  fullWidth label="비밀번호" type="password" color='success' value={userPW} onChange={onPwHandler}/>
                 <TextField required margin='normal' id='outlined-requried' label='비밀번호 확인' fullWidth type='password' color='success' value={userCheckPW} onChange={onCheckPwHandler}/>

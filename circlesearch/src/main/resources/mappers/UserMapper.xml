@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.capstone.CircleSearch.Model.dao.UserDAO">
-
     <select id="selectUsers" parameterType="com.capstone.CircleSearch.Model.dto.UserDTO"
             resultType="com.capstone.CircleSearch.Model.dto.UserDTO">
         SELECT * FROM USER_tb
@@ -16,6 +15,5 @@
     <insert id="insertUsers" parameterType="com.capstone.CircleSearch.Model.dto.UserDTO" keyProperty="id">
         INSERT INTO USER_tb(USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_EMAIL) VALUES(#{id}, #{pw}, #{name}, #{birth}, #{email})
     </insert>
-
 
 </mapper>
