@@ -6,7 +6,6 @@ import Navbar from './Navbar'
 
 function TopPannel() {
     const isLoggedIn = useSelector(state => state.auth.login)
-    
     if (isLoggedIn) {
         return (
         <UserGreeting/>
