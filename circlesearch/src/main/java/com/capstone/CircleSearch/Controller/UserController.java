@@ -1,8 +1,10 @@
 package com.capstone.CircleSearch.Controller;
 
 import com.capstone.CircleSearch.Model.dao.CheckIdDAO;
+import com.capstone.CircleSearch.Model.dao.InterestDAO;
 import com.capstone.CircleSearch.Model.dao.UserDAO;
 import com.capstone.CircleSearch.Model.dto.CheckIdDTO;
+import com.capstone.CircleSearch.Model.dto.InterestDTO;
 import com.capstone.CircleSearch.Model.dto.UserDTO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class UserController {
     @Autowired
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private CheckIdDAO checkIdDAO;
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    private InterestDAO interestDAO;
 
     @GetMapping("/users")
     public List<UserDTO> users(@RequestParam(value = "name", defaultValue = "") String name) throws Exception {
@@ -42,5 +47,12 @@ public class UserController {
         final CheckIdDTO param = new CheckIdDTO(userID);
         return checkIdDAO.checkUserid(param);
     }
+
 //    Register2 제작 필요
+
+    //Interest 가져오기
+    @GetMapping("/user/register2/interest")
+    public List<InterestDTO> GetInterestList() throws Exception{
+        return interestDAO.selectInterestList();
+    }
 }

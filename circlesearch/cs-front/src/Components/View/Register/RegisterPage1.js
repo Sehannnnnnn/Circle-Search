@@ -58,7 +58,7 @@ function RegisterPage1() {
         }
         console.log(body)
         axios.post('/user/register1',body).then((response) => {
-            if(response.status == 200) navigate("../register2", {replace: true});
+            if(response.status == 200) navigate(`../register2/${userID}`, {replace: true});
             else alert('error')
         })
         }
