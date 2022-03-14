@@ -10,6 +10,7 @@ import TopPannel from './Components/TopPannel/TopPannel';
 import RegisterPage1 from './Components/View/Register/RegisterPage1';
 import RegisterPage2 from './Components/View/Register/RegisterPage2';
 import { Container } from '@mui/material';
+import RegisterPage3 from './Components/View/Register/RegisterPage3';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
         <Route exact path="/" element={<HomePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register1" element={<RegisterPage1/>}/>
-        <Route path="/register2/:id" element={<RegisterPage2/>}/>
+        <Route path="/register2/:userID" element={<RegisterPage2/>}/>
+        <Route path="/register3/:userID" element={<RegisterPage3/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "xs" className='right_sidebar'>

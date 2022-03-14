@@ -8,12 +8,12 @@
             resultType="com.capstone.CircleSearch.Model.dto.UserDTO">
         SELECT * FROM USER_tb
         <if test="name != null and name != ''">
-        WHERE USER_NAME = #{name}
+        WHERE USER_NICKNAME = #{name}
         </if>
     </select>
 
     <insert id="insertUsers" parameterType="com.capstone.CircleSearch.Model.dto.UserDTO" keyProperty="id">
-        INSERT INTO USER_tb(USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_EMAIL) VALUES(#{id}, #{pw}, #{name}, #{birth}, #{email})
+        INSERT INTO USER_tb(USER_ID, USER_PW, USER_EMAIL) VALUES(#{id}, #{pw}, #{email})
     </insert>
 
 </mapper>

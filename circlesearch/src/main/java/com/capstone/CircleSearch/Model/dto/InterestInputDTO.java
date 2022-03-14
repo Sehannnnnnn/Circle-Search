@@ -7,16 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-    private String id;
-    private String pw;
-    private String email;
+public class InterestInputDTO {
+    private String userID;
     private String interest1;
     private String interest2;
-    private String nickname;
-    private String college;
-    private String studentid;
-    private String major;
-    private String region;
-
 }

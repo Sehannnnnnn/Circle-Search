@@ -8,4 +8,10 @@
         SELECT *
         FROM INTEREST_tb
     </select>
+
+    <update id="insertUserInterest" parameterType="com.capstone.CircleSearch.Model.dto.InterestInputDTO">
+        UPDATE USER_tb
+        SET USER_INTEREST1 = #{interest1}, USER_INTEREST2 = #{interest2}
+        WHERE USER_ID = #{userID}
+    </update>
 </mapper>

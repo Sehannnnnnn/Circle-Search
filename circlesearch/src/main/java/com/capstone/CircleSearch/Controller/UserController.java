@@ -5,6 +5,7 @@ import com.capstone.CircleSearch.Model.dao.InterestDAO;
 import com.capstone.CircleSearch.Model.dao.UserDAO;
 import com.capstone.CircleSearch.Model.dto.CheckIdDTO;
 import com.capstone.CircleSearch.Model.dto.InterestDTO;
+import com.capstone.CircleSearch.Model.dto.InterestInputDTO;
 import com.capstone.CircleSearch.Model.dto.UserDTO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class UserController {
 
     @GetMapping("/users")
     public List<UserDTO> users(@RequestParam(value = "name", defaultValue = "") String name) throws Exception {
-        final UserDTO param = new UserDTO(null, null, name, null, null);
+        final UserDTO param = new UserDTO();
+        param.setNickname(name);
         return userDAO.selectUsers(param);
     }
 
@@ -54,5 +56,11 @@ public class UserController {
     @GetMapping("/user/register2/interest")
     public List<InterestDTO> GetInterestList() throws Exception{
         return interestDAO.selectInterestList();
+    }
+    //Interest 저장하기
+    @PostMapping("/user/register2/interest")
+    public ResponseEntity<InterestInputDTO> InsertUserInterest(@RequestBody InterestInputDTO interestInputDTO) throws Exception {
+        interestDAO.insertUserInterest(interestInputDTO);
+        return new ResponseEntity<>(interestInputDTO, HttpStatus.OK);
     }
 }
