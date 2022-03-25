@@ -16,4 +16,9 @@
         INSERT INTO USER_tb(USER_ID, USER_PW, USER_EMAIL) VALUES(#{id}, #{pw}, #{email})
     </insert>
 
+    <insert id="insertUsersInfo" parameterType="com.capstone.CircleSearch.Model.dto.UserDTO">
+        UPDATE USER_tb
+        SET USER_NICKNAME = #{nickname}, USER_BIRTH  = #{birth}, USER_COLLEGE =#{college}, USER_MAJOR=#{major}, USER_REGION=#{region}, USER_STUDENTID=#{studentid}
+        WHERE USER_ID = #{id}
+    </insert>
 </mapper>

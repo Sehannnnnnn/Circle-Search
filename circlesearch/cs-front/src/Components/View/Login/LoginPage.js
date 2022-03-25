@@ -43,16 +43,15 @@ function LoginPage() {
 
     return (
         <div>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="sm">
                 <Box
                     sx={{
                         marginTop: 8,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        border: 2,
                         bgcolor: 'white',
-                        borderRadius: 5,
+                        borderRadius: 4,
                         borderColor: 'grey.500',  
                         padding: 2
                     }}>

@@ -86,9 +86,7 @@ function RegisterPage2() {
             sx={{
                 display: 'flex',
                 maxWidth: 'sm',
-                flexDirection: 'column',
-                border: 2,
-                borderColor: 'grey.500',  
+                flexDirection: 'column', 
                 padding: 5
             }}>
             <h2>서클서치 회원가입</h2>

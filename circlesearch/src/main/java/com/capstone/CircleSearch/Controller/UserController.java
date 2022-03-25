@@ -63,4 +63,22 @@ public class UserController {
         interestDAO.insertUserInterest(interestInputDTO);
         return new ResponseEntity<>(interestInputDTO, HttpStatus.OK);
     }
+
+    // Register3 제작
+    @GetMapping("/user/register3/checkNickname")
+    public int CheckNicknamePrimary(@RequestParam(value = "userNickname", defaultValue = "") String userNickname) throws Exception{
+        final CheckIdDTO param = new CheckIdDTO(userNickname);
+        return checkIdDAO.checkUserNickname(param);
+    }
+
+    @GetMapping("/user/register3/getCollegeList")
+    public List<CheckIdDTO> GetCollegeList() throws Exception{
+        return checkIdDAO.selectAllCollegeList();
+    }
+
+    @PostMapping("/user/register3/postUserInfo")
+    public ResponseEntity<UserDTO> InsertUserInfo(@RequestBody UserDTO userDTO) throws Exception{
+        userDAO.insertUsersInfo(userDTO);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
 }

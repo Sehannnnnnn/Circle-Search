@@ -11,6 +11,7 @@ import RegisterPage1 from './Components/View/Register/RegisterPage1';
 import RegisterPage2 from './Components/View/Register/RegisterPage2';
 import { Container } from '@mui/material';
 import RegisterPage3 from './Components/View/Register/RegisterPage3';
+import RegisterComplete from './Components/View/Register/RegisterComplete';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/register1" element={<RegisterPage1/>}/>
         <Route path="/register2/:userID" element={<RegisterPage2/>}/>
         <Route path="/register3/:userID" element={<RegisterPage3/>}/>
+        <Route path="/register/complete" element={<RegisterComplete/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "xs" className='right_sidebar'>

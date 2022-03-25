@@ -9,4 +9,14 @@
         FROM USER_tb
         WHERE USER_ID = #{id}
     </select>
+
+    <select id="checkUserNickname" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="int">
+        SELECT COUNT(USER_NICKNAME)
+        FROM USER_tb
+        WHERE USER_NICKNAME = #{id}
+    </select>
+
+    <select id="selectAllCollegeList" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="com.capstone.CircleSearch.Model.dto.CheckIdDTO">
+        SELECT COLLEGE_NAME FROM COLLEGE_tb
+    </select>
 </mapper>
