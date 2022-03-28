@@ -19,5 +19,4 @@ public class UserDTO {
     private String studentid;
     private String major;
     private String region;
-
 }

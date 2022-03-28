@@ -30,13 +30,19 @@ public class UserController {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private InterestDAO interestDAO;
 
-    @GetMapping("/users")
-    public List<UserDTO> users(@RequestParam(value = "name", defaultValue = "") String name) throws Exception {
-        final UserDTO param = new UserDTO();
-        param.setNickname(name);
-        return userDAO.selectUsers(param);
+    //로그임 기능
+    @PostMapping("/user/login")
+    public int userLogin(@RequestBody UserDTO userDTO) throws Exception {
+        CheckIdDTO idDTO = new CheckIdDTO(userDTO.getId());
+        String pw_stored = checkIdDAO.getLogin(idDTO);
+        if(pw_stored.equals(userDTO.getPw())) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
+    //회원가입 1
     @PostMapping("/user/register1")
     public ResponseEntity<UserDTO> users(@RequestBody UserDTO userDTO) throws Exception{
         userDAO.insertUsers(userDTO);

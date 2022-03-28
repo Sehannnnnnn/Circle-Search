@@ -9,4 +9,5 @@ public interface CheckIdDAO {
     int checkUserid (CheckIdDTO param) throws Exception;
     int checkUserNickname (CheckIdDTO param) throws Exception;
     List<CheckIdDTO> selectAllCollegeList() throws Exception;
+    String getLogin(CheckIdDTO userid) throws Exception;
 }

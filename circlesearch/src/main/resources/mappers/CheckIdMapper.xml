@@ -19,4 +19,9 @@
     <select id="selectAllCollegeList" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="com.capstone.CircleSearch.Model.dto.CheckIdDTO">
         SELECT COLLEGE_NAME FROM COLLEGE_tb
     </select>
+
+    <select id="getLogin" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="String">
+        SELECT USER_PW FROM USER_tb
+        WHERE USER_ID = #{id}
+    </select>
 </mapper>

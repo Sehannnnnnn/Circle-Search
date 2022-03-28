@@ -1,16 +1,29 @@
 import { TextField, Box, Button, Container, Grid, Link } from '@mui/material';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginSuccess } from '../../../Slices/authSlice';
+import axios from 'axios';
 
-function LoginPage() {
-    const auth = useSelector(state => state.auth.login)
-    const dispatch = useDispatch()
+function LoginPage(props) {
+    // const auth = useSelector(state => state.auth.login)
+    // const dispatch = useDispatch()
     let navigate = useNavigate();
-
+    
+    const [userStatus, setuserStatus] = useState(props.userState);
     const [userID, setuserID] = useState("");
     const [userPW, setuserPW] = useState("");
+
+    //로그인 확인을 위한 함수
+    const onUserStateChange = async() => {
+        setuserStatus({
+                ...userStatus, 
+                isLogin : true,
+                userid : userID,
+        });
+        props.onChange(userID)
+    }
+
 
     const onIDHandler = (event) => {
         setuserID(event.currentTarget.value)
@@ -20,26 +33,20 @@ function LoginPage() {
     }
     const onSubmitHandler = (event) => {
         event.preventDefault();
-
-        dispatch(loginSuccess())
-        navigate("/")
-        // let data = {
-        //     'ID' : userID,
-        //     'PW' : userPW
-        // }
-        // console.log(data)
-        // fetch('/api/login',{
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         'ID' : userID,
-        //         'PW' : userPW
-        //         })
-        // }).then(resposne => console.log('Success:',resposne))
-        // .catch(error => console.error('Error:', error));
+        let body = {
+            id : userID,
+            pw : userPW,
+        }
+        console.log(body)
+        axios.post("/user/login", body).then((res) => {
+            if (res.data === 1){
+                onUserStateChange().then(navigate("/", {replace: true}))
+            } else {
+                alert('로그인 실패!');
+            }
+        }).catch((err) => console.log(err));
     }
+        
 
     return (
         <div>
