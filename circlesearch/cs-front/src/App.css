@@ -1,0 +1,48 @@
+.App {
+  margin: 0;
+}
+
+a { text-decoration: none; color: black; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+.wrapper {
+  width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.left_sidebar {
+  grid-column: 1;
+  background-color: beige;
+  border: 1px solid grey;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+.main_container {
+  grid-column: 2/5;
+  border-top: 0px;
+  border-bottom: 0px;
+  height: 2000px;
+}
+
+.right_sidebar {
+  grid-column: 5;
+  background-color: beige;
+  border: 1px solid grey;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+.link {
+  color: #F2F2F2
+}
+.link:hover {
+   color: #FFF;
+}
