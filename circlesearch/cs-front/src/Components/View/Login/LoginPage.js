@@ -4,26 +4,17 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginSuccess } from '../../../Slices/authSlice';
 import axios from 'axios';
+import MainBanner from '../Banner/MainBanner';
 
 function LoginPage(props) {
     // const auth = useSelector(state => state.auth.login)
     // const dispatch = useDispatch()
     let navigate = useNavigate();
     
-    const [userStatus, setuserStatus] = useState(props.userState);
     const [userID, setuserID] = useState("");
     const [userPW, setuserPW] = useState("");
 
     //로그인 확인을 위한 함수
-    const onUserStateChange = async() => {
-        setuserStatus({
-                ...userStatus, 
-                isLogin : true,
-                userid : userID,
-        });
-        props.onChange(userID)
-    }
-
 
     const onIDHandler = (event) => {
         setuserID(event.currentTarget.value)
@@ -40,7 +31,7 @@ function LoginPage(props) {
         console.log(body)
         axios.post("/user/login", body).then((res) => {
             if (res.data === 1){
-                onUserStateChange().then(navigate("/", {replace: true}))
+                navigate("/", {replace: true})
             } else {
                 alert('로그인 실패!');
             }
