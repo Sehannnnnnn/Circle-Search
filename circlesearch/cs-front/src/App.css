@@ -19,7 +19,7 @@ a:hover, a:active { text-decoration: none; }
 
 .left_sidebar {
   grid-column: 1;
-  background-color: beige;
+  background-color: #f0f7ed;
   border: 1px solid grey;
   border-top: 0px;
   border-bottom: 0px;
@@ -34,7 +34,7 @@ a:hover, a:active { text-decoration: none; }
 
 .right_sidebar {
   grid-column: 5;
-  background-color: beige;
+  background-color: #f0f7ed;
   border: 1px solid grey;
   border-top: 0px;
   border-bottom: 0px;

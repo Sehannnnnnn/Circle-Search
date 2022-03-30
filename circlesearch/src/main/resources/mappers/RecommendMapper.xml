@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capstone.CircleSearch.Model.dao.RecommendDAO">
+    <select id="recommendCircle"
+            resultType="com.capstone.CircleSearch.Model.dto.CircleDTO">
+        SELECT *
+        FROM Circle_Info
+        WHERE  COLLEGE =
+               (SELECT USER_COLLEGE
+                FROM User_Info
+                Where USER_ID=#{param})
+          AND Category =
+              (SELECT USER_INTEREST
+               FROM User_Info
+               Where USER_ID=#{param})
+    </select>
+
+</mapper>

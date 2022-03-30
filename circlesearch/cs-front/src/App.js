@@ -13,6 +13,9 @@ import { Container } from '@mui/material';
 import RegisterPage3 from './Components/View/Register/RegisterPage3';
 import RegisterComplete from './Components/View/Register/RegisterComplete';
 import CircleUnionPage from './Components/View/CircleUnion/CircleUnionPage';
+import CircleUnion from './Components/View/CircleUnion/CircleUnion';
+import CommunityPage from './Components/View/Community/CommunityPage';
+import CommunityWritePage from './Components/View/Community/CommunityWritePage';
 
 function App() {
   const [userState, setuserState] = useState({
@@ -32,11 +35,14 @@ function App() {
     <Routes>
         <Route exact path="/" element={<HomePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/Circle/Union/List" element={<CircleUnionPage/>}/>
+        <Route path="/circle/union/list" element={<CircleUnionPage/>}/>
         <Route path="/register1" element={<RegisterPage1/>}/>
         <Route path="/register2/:userID" element={<RegisterPage2/>}/>
         <Route path="/register3/:userID" element={<RegisterPage3/>}/>
         <Route path="/register/complete" element={<RegisterComplete/>}/>
+        <Route path="/circle/union/:CircleID/:Page" element={<CircleUnion/>}/>
+        <Route path="/community" element={<CommunityPage/>}/>
+        <Route path="/community/write" element={<CommunityWritePage/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "sm" className='right_sidebar'>

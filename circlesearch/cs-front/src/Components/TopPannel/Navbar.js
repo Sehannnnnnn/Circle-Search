@@ -16,13 +16,16 @@ import {Link} from 'react-router-dom';
 
 const pages = [{
   label : '연합동아리',
-  link : '/Circle/Union/List'
+  link : '/circle/union/list'
  },{
    label : '교내동아리',
    link : '/inschool'
  },{
    label : '커뮤니티',
    link : '/community'
+ },{
+   label : '회원가입',
+   link : '/register1'
  }];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 

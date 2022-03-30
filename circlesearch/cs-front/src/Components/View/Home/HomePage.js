@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useLocation} from 'react-router-dom'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import {Box, Containe, Divider, Grid} from '@mui/material'
-import { Circle } from '@mui/icons-material';
-import CircleUnionPage from '../CircleUnion/CircleUnionPage';
+import {Divider, Grid} from '@mui/material'
 import CircleInSchoolPage from '../CircleInSchool/CircleInSchoolPage';
 import MainBanner from '../Banner/MainBanner';
-import CircleInterest from '../CircleUnion/CircleInterest';
+import CircleInterest from '../Home/CircleInterest';
+import Community_modal from './Community_modal';
 
 function HomePage() {
   const [message, setMessage]=useState([]);
@@ -37,6 +35,11 @@ function HomePage() {
       </Grid>
       <Grid item xs={12} sx= {{mb: 3}}>
         <CircleInSchoolPage/>
+        <Divider></Divider>
+      </Grid>
+      <Grid item xs={12} sx= {{mb: 3}}>
+        <h2>실시간 커뮤니티 게시글</h2>
+        <Community_modal/>
         <Divider></Divider>
       </Grid>
     </Grid>

@@ -14,9 +14,7 @@ public class UserDTO {
     private String interest1;
     private String interest2;
     private String nickname;
-    private String birth;
     private String college;
-    private String studentid;
     private String major;
     private String region;
 }

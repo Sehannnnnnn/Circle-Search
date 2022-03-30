@@ -30,7 +30,7 @@ public class UserController {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private InterestDAO interestDAO;
 
-    //로그임 기능
+    //로그인 기능
     @PostMapping("/user/login")
     public int userLogin(@RequestBody UserDTO userDTO) throws Exception {
         CheckIdDTO idDTO = new CheckIdDTO(userDTO.getId());
