@@ -8,15 +8,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-    private String id;
-    private String pw;
-    private String email;
-    private String interest1;
-    private String interest2;
-    private String nickname;
-    private String birth;
-    private String college;
-    private String studentid;
-    private String major;
-    private String region;
+    private String user_id;
+    private int user_college;
+    private int user_region;
+    private int user_interest1;
+    private int user_interest2;
+    private String user_password;
+    private String user_email;
+    private String user_nickname;
+    private String deleted = "N";
 }

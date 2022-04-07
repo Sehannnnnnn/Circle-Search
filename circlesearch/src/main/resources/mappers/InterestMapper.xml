@@ -5,13 +5,13 @@
 
 <mapper namespace="com.capstone.CircleSearch.Model.dao.InterestDAO">
     <select id="selectInterestList" parameterType="com.capstone.CircleSearch.Model.dto.InterestDTO" resultType="com.capstone.CircleSearch.Model.dto.InterestDTO">
-        SELECT *
-        FROM INTEREST_tb
+        SELECT *  /* interest table의 category 이름만 나오게 수정 --> result type이 dto 형식이라 이름만 나오게 수정 못할듯.*/
+        FROM Interest_tb
     </select>
 
     <update id="insertUserInterest" parameterType="com.capstone.CircleSearch.Model.dto.InterestInputDTO">
-        UPDATE USER_tb
-        SET USER_INTEREST1 = #{interest1}, USER_INTEREST2 = #{interest2}
+        UPDATE User_tb /* 이 사이에 user_interest code를 User_tb에 저장해야함. 먼저 받은걸 interest_tb과 일치한 code를 가져오기 */
+        SET user_interest1 = #{interest1}, user_interest2 = #{interest2}
         WHERE USER_ID = #{userID}
     </update>
 </mapper>

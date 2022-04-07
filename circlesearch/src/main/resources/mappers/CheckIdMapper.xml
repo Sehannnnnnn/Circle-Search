@@ -5,23 +5,23 @@
 
 <mapper namespace="com.capstone.CircleSearch.Model.dao.CheckIdDAO">
     <select id="checkUserid" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="int">
-        SELECT COUNT(USER_ID)
-        FROM USER_tb
-        WHERE USER_ID = #{id}
+        SELECT COUNT(user_id)
+        FROM User_tb
+        WHERE user_id = #{id}
     </select>
 
     <select id="checkUserNickname" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="int">
-        SELECT COUNT(USER_NICKNAME)
-        FROM USER_tb
-        WHERE USER_NICKNAME = #{id}
+        SELECT COUNT(user_nickname)
+        FROM User_tb
+        WHERE User_nickname = #{id}
     </select>
 
     <select id="selectAllCollegeList" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="com.capstone.CircleSearch.Model.dto.CheckIdDTO">
-        SELECT COLLEGE_NAME FROM COLLEGE_tb
+        SELECT College_name FROM College_tb
     </select>
 
     <select id="getLogin" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="String">
-        SELECT USER_PW FROM USER_tb
-        WHERE USER_ID = #{id}
+        SELECT user_password FROM User_tb
+        WHERE user_id = #{id}
     </select>
 </mapper>
