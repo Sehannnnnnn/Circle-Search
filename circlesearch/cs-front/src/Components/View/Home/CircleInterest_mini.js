@@ -14,7 +14,7 @@ function CircleInterest_mini(props) {
              height: 250,
              border: '1px solid grey'
         }}>
-            <div>   {CircleInfo.id}</div>
+            <div>{CircleInfo.id}</div>
             <center>
                 <Grid container coloumspacing={1}>
                 <Grid item xs={12} sx={{

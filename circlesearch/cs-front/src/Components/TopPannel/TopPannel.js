@@ -1,41 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import LoginPannel from '../LoginPannel/LoginPannel'
-import LogoutPannel from '../LoginPannel/LogoutPannel'
+import React from 'react'
 import Navbar from './Navbar'
 
 function TopPannel() {
-    const isLoggedIn = useSelector(state => state.auth.login)
-    if (isLoggedIn) {
-        return (
-        <UserGreeting/>
-        )
-    } else {
-        return (
-        <GuestGreeting/>
+    return (
+        <div>
+            <UserGreeting/>
+        </div>
     )
-    }
 }
 
 export default TopPannel
 
 
 function UserGreeting() {
-    return (<div style={{ width: '100%', justifyContent: 'center', alignContent: 'center' }}>
-        <h1 style={{ textAlign: 'center' }}>CircleSearch</h1>
-        <h2>로그인되었습니다.</h2>
-        <LogoutPannel />
+    return (
+    <div style={{ width: '100%', justifyContent: 'center', alignContent: 'center' }}>
+        <center>
+        <h3>내가 찾는 모든 동아리 소식</h3>
+        <h1>CircleSearch</h1>
+        </center>
         <Navbar />
     </div>)
-}
-
-function GuestGreeting() {
-    return (
-        <div style={{ width: '100%', justifyContent: 'center', alignContent: 'center' }}>
-            <h1 style={{ textAlign: 'center' }}>CircleSearch</h1>
-            <h2>로그아웃되었습니다.</h2>
-            <LoginPannel />
-            <Navbar />
-        </div>
-    )
 }

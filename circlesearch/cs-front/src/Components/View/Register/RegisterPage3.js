@@ -12,11 +12,9 @@ function RegisterPage3() {
   const navigate = useNavigate();
   const [userNickname, setuserNickname] = useState("");
   const [checkuserNickname, setcheckuserNickname] = useState()
-  const [userBirth, setuserBirth] = useState("");
   const [userID, setuserID] = useState(params.userID);
   const [userCollege, setuserCollege] = useState("");
   const [userMajor, setuserMajor] = useState("");
-  const [userStuID, setuserStuID] = useState(16);
   const [userRegion, setuserRegion] = useState("");
   const [collegeList, setcollegeList] = useState([
     {label: '서울과학기술대학교', id:1},
@@ -72,10 +70,8 @@ function RegisterPage3() {
     let body = {
       id : userID,
       nickname : userNickname,
-      birth : `${userBirth.getFullYear()} + '-' + ${userBirth.getMonth()+1} + '-' + ${userBirth.getDay()}`,
       college : userCollege.label,
       major : userMajor.label,
-      studentid : userStuID,
       region : userRegion.label,
     }
     console.log(body)
@@ -108,26 +104,6 @@ function RegisterPage3() {
                   </Grid>
                   <Grid item xs={12} sx={{mb: 1}}>
                         <Button variant={checkuserNickname ? "contained":"outlined"} onClick={onCheckNicknameHandler} color='success'> 닉네임 중복체크</Button>
-                  </Grid>
-                  <Grid item xs={12} sx={{mb: 1}}>
-                        생년월일을 선택하세요
-                  </Grid>
-                  <Grid item xs={12} sx={{mb: 1}}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                        displayStaticWrapperAs="desktop"
-                        openTo="year"
-                        fullWidth
-                        value={userBirth}
-                        margin="normal"
-                        label='생년 월일'
-                        color='success'
-                        onChange={(newValue) => {
-                        setuserBirth(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
-                    </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12} sx={{mb: 1}}>
                     대학교 명

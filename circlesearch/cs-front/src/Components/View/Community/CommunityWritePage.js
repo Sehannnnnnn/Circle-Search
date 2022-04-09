@@ -32,8 +32,7 @@ function CommunityWritePage() {
         setBoard({
             ...Board,
             time : time
-        })
-        console.log(Board)
+        })                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
     }
       return (
     <div>

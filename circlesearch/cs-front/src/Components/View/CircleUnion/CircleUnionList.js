@@ -1,65 +1,14 @@
 import axios from 'axios';
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {Stack, Grid} from '@mui/material'
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
 
 function CircleUnionList() {
-    const [interest1Circle, setinterest1Circle] = useState([
-        {id : 1,
-        name : 'SOPT',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'}
-        , {id : 2,
-        name : '큐시즘',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'}
-        ,{id : 3,
-        name : '앙기못',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'}
-        , {id : 4,
-        name : '경영시켜',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'}
-        , {id : 5,
-        name : '경영시켜',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'} 
-        , {id : 6,
-        name : '경영시켜',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'} 
-        , {id : 7,
-        name : '경영시켜',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'} 
-        , {id : 8,
-        name : '경영시켜',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'} 
-        , {id : 9,
-        name : '경영시켜',
-        logo : 'logo',
-        img : 'img',
-        detail: '이 동아리에 대한 설명'}
-        , {id : 10,
-            name : '경영시켜',
-            logo : 'logo',
-            img : 'img',
-            detail: '이 동아리에 대한 설명'} 
-    ]);
-
-        // 흥미 서클 가져오는 api 개발 필요
+    const [interest1Circle, setinterest1Circle] = useState([ ]);
+    
+    //userInterest별 동아리 조회 기능 필요
     // useEffect(() => {
     //   const getInterestCircle = async() => {
     //       try {

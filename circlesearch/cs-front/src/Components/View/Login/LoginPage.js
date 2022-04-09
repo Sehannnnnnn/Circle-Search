@@ -2,9 +2,13 @@ import { TextField, Box, Button, Container, Grid, Link } from '@mui/material';
 import React, { useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../../../Slices/authSlice';
+// import { loginSuccess } from '../../../Slices/authSlice';
+// import MainBanner from '../Banner/MainBanner';
+// import session from 'express-session';
+// import { set } from 'date-fns';
 import axios from 'axios';
-import MainBanner from '../Banner/MainBanner';
+
+import SingleListAvatar from '../../Avatar/SingleListAvatar';
 
 function LoginPage(props) {
     // const auth = useSelector(state => state.auth.login)
@@ -13,8 +17,25 @@ function LoginPage(props) {
     
     const [userID, setuserID] = useState("");
     const [userPW, setuserPW] = useState("");
+    const [isLogined, setisLogined] = useState(
+        sessionStorage.getItem('islogined') == 'true');
+    //로그인 정보 sessionStorage 저장
+    
+    //userID로 현재 가입된 동아리 list 보기 [동아리 명, 동아리 로고] (api)
+    const [showcirclelist, setshowcirclelist] = useState(false)
+    const [mycircleList, setmycircleList] = useState([
+        { 
+            name : '큐시즘',
+            logo : 'img'
+        }, {
+            name: '잔디',
+            logo: 'img2'
+        }, {
+            name: '한국홍보대사연합',
+            logo: 'img3'
+        }
+     ])
 
-    //로그인 확인을 위한 함수
 
     const onIDHandler = (event) => {
         setuserID(event.currentTarget.value)
@@ -31,14 +52,35 @@ function LoginPage(props) {
         console.log(body)
         axios.post("/user/login", body).then((res) => {
             if (res.data === 1){
-                navigate("/", {replace: true})
+                console.log('success')
+                sessionStorage.setItem('islogined', 'true');
+                sessionStorage.setItem('userID', userID);
+                setisLogined(true);
+                navigate("/", {replace: true});
             } else {
                 alert('로그인 실패!');
             }
         }).catch((err) => console.log(err));
     }
-        
 
+    const logout = () => {
+        setisLogined(false);
+        sessionStorage.clear();
+    }
+
+    const openMyCircleList = () => {
+        setshowcirclelist(true)
+    }
+
+    const moveToMyPage = () => {
+
+    }
+
+    const openCreateCircle = () => {
+        navigate("/create/circle/new", {replace: true});
+    }
+        
+    if (!isLogined) {
     return (
         <div>
             <Container component="main" maxWidth="sm">
@@ -86,6 +128,43 @@ function LoginPage(props) {
             </Container>
         </div>
     );
+    } return (
+    <div>
+    <Container component="main" maxWidth="sm">
+        <Box
+            sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                bgcolor: 'white',
+                borderRadius: 4,
+                borderColor: 'grey.500',  
+                padding: 2
+            }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={10} sx={{mr : 3}}>
+                    {sessionStorage.getItem('userID')} 님 환영합니다.
+                    </Grid>
+                    <Grid item xs={12}>
+                    <Button onClick={openMyCircleList} fullWidth variant='contained' color='success'>내 동아리</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                    <Button onClick={openCreateCircle} fullWidth variant='contained' color='success'>동아리 새로 만들기</Button>
+                    </Grid>
+                    <Grid item xs={6}>
+                    <Button onClick={logout} variant='outlined' fullWidth color='success'>로그아웃</Button>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button onClick={moveToMyPage} variant='outlined' color='success' fullWidth>
+                            마이페이지
+                        </Button>
+                    </Grid>
+                    { showcirclelist ? <SingleListAvatar/> : null}
+                    </Grid>
+            </Box>
+    </Container>
+    </div>)
 }
 
 export default LoginPage;

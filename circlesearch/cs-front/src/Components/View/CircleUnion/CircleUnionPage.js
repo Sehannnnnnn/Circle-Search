@@ -5,6 +5,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import CircleUnionList from './CircleUnionList';
+
 function CircleUnionPage() {
     const [interestState_Study, setinterestState_Study] = useState([
         {label :'인문사회', checked: false},

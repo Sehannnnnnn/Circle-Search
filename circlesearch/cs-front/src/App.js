@@ -16,14 +16,16 @@ import CircleUnionPage from './Components/View/CircleUnion/CircleUnionPage';
 import CircleUnion from './Components/View/CircleUnion/CircleUnion';
 import CommunityPage from './Components/View/Community/CommunityPage';
 import CommunityWritePage from './Components/View/Community/CommunityWritePage';
+import CreateCirclePage from './Components/View/CreateCircle/CreateCirclePage';
 
 function App() {
-  const [userState, setuserState] = useState({
-    logined : false,
-    userid : null,
-    usernickname : null,
-  });
-
+  // if (!userState.logined) {
+  //   return (
+  //     <div className="App">
+  //       <LandingPage />
+  //     </div>
+  //   )
+  // } 
   return (
     <div className="App">
     <TopPannel/>
@@ -43,6 +45,7 @@ function App() {
         <Route path="/circle/union/:CircleID/:Page" element={<CircleUnion/>}/>
         <Route path="/community" element={<CommunityPage/>}/>
         <Route path="/community/write" element={<CommunityWritePage/>}/>
+        <Route path="/create/circle/new" element={<CreateCirclePage/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "sm" className='right_sidebar'>
