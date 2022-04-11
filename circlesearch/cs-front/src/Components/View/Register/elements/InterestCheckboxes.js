@@ -4,19 +4,27 @@ import {Grid, FormControlLabel, Checkbox, Divider, FormGroup, FormLabel, FormCon
 
 function InterestCheckboxes({onInterestHandler}) {
     const [InterestList, setInterestList] = useState([])
-    const [InterestChecked, setInterestChecked] = useState({})
+    const [InterestChecked, setInterestChecked] = useState([])
+
     useEffect(() => {
       axios.get("/user/register2/interest").then((response) => {
           response.data.forEach((element) => setInterestList((prevList) => [...prevList, element.categoryS]))
-      }).then(setInterestChecked(() => InterestList.map((i) => false)))
+      })
     }, [])
     
+    useEffect(() => {
+      console.log(InterestChecked);
+      onInterestHandler(InterestChecked) ;
+    }, [InterestChecked])
+    
     const handleChange = (event) => {
-        setInterestChecked({
-            ...InterestChecked, 
-            [event.target.name] : event.target.checked,
-        })
-        onInterestHandler(InterestChecked);
+        if (event.currentTarget.checked) {
+          setInterestChecked(prev => [...prev, event.currentTarget.name]);
+        }
+        else {
+          const newState = InterestChecked.filter(interest => interest != event.currentTarget.name);
+          setInterestChecked(newState);
+        }
     }
 
     
@@ -29,7 +37,7 @@ function InterestCheckboxes({onInterestHandler}) {
                 {InterestList.map((item) => (
                   <Grid item xs={5}>
                   <FormControlLabel control={
-                    <Checkbox checked={InterestChecked[item]} onChange={handleChange} name={item}/>
+                    <Checkbox onChange={handleChange} name={item} key={item}/>
                   } label={item}/>
                   </Grid>
                 ))}

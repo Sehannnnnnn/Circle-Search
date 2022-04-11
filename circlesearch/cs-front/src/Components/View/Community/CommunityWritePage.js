@@ -32,7 +32,7 @@ function CommunityWritePage() {
         setBoard({
             ...Board,
             time : time
-        })                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        })
     }
       return (
     <div>

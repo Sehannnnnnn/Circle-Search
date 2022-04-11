@@ -17,6 +17,7 @@ import CircleUnion from './Components/View/CircleUnion/CircleUnion';
 import CommunityPage from './Components/View/Community/CommunityPage';
 import CommunityWritePage from './Components/View/Community/CommunityWritePage';
 import CreateCirclePage from './Components/View/CreateCircle/CreateCirclePage';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   // if (!userState.logined) {
@@ -51,6 +52,7 @@ function App() {
     <Container maxWidth= "sm" className='right_sidebar'>
     </Container>
     </div>
+    <Footer/>
     </div>
   );
 }

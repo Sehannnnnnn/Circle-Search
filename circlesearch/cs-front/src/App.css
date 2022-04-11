@@ -15,6 +15,7 @@ a:hover, a:active { text-decoration: none; }
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  min-height: 1080px;
 }
 
 .left_sidebar {
@@ -29,7 +30,6 @@ a:hover, a:active { text-decoration: none; }
   grid-column: 2/5;
   border-top: 0px;
   border-bottom: 0px;
-  height: 2000px;
 }
 
 .right_sidebar {
@@ -45,4 +45,8 @@ a:hover, a:active { text-decoration: none; }
 }
 .link:hover {
    color: #FFF;
+}
+
+input {
+  font-size: 10px;
 }

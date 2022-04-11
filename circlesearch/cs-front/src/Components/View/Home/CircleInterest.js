@@ -3,7 +3,7 @@ import {Divider, Grid, Button} from '@mui/material'
 import CircleInterest_mini from './CircleInterest_mini';
 import axios from 'axios';
 
-function CircleInterest() {
+function CircleInterest(props) {
     const [userID, setuserID] = useState("");
     const [userInterests, setuserInterests] = useState({
         interest1 : "IT/경영",

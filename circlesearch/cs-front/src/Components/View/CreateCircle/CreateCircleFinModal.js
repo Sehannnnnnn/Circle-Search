@@ -1,0 +1,49 @@
+import React, {useState, useEffect} from 'react'
+import {Dialog, DialogTitle, Button, DialogContent, Grid, Box} from '@mui/material'
+
+
+
+export default function CreateCircleFinModal(props) {
+  const {onClose, open, circleInfo} = props;
+  const [circleManager, setcircleManager] = useState(sessionStorage.getItem("userID"))
+  const handleClose = () => {
+    onClose()
+  }
+
+  useEffect(() => {
+    console.log(circleInfo);
+  }, [])
+
+  
+  
+  return (
+      <Dialog 
+      fullWidth={true} 
+      maxWidth='sm' 
+      onClose={handleClose} 
+      open={open}>
+      <DialogTitle sx={{borderBottom: 'solid grey 2px', lineHeight: '120%'}}>축하드려요! <br></br>{circleInfo.CircleName} 이(가) 성공적으로 생성 되었습니다!</DialogTitle>
+      <DialogContent>
+          <Box sx={{
+                display: 'flex',
+                maxWidth: 'sm',
+                flexDirection: 'column',
+                p: 2, pt: 1
+                }}>
+          <p style={{lineHeight: '140%', fontSize: 18}}>
+          이름 : {circleInfo.CircleName} <br></br>
+          구분 : {circleInfo.CircleType}<br></br>
+          {circleInfo.CircleType == "연합" ? `지역 : ${circleInfo.CircleRegion.toString()}` : `학교 : ${circleInfo.CircleSchool}`}
+          <br></br>
+          분야 : {circleInfo.CircleInterest.toString()} <br></br>
+          링크 : http://www.circlesearch.com/circle/{circleInfo.CircleAddress}<br></br>
+          설명 : {circleInfo.CirclePurpose}<br></br>
+        
+
+          </p>
+          </Box>
+      </DialogContent>
+      <Button variant="contained" color='success'>내 동아리로 이동</Button>
+    </Dialog>
+  )
+}

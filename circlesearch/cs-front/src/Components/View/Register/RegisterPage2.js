@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, FormGroup, FormControlLabel, Button, Divider, Grid, Checkbox} from '@mui/material';
 import { Box } from '@mui/system';
 import { useParams, useNavigate } from 'react-router-dom'
+import { SelectAllTwoTone } from '@mui/icons-material';
 
 
 function RegisterPage2() {
@@ -123,5 +124,6 @@ function RegisterPage2() {
     </div>
   )
 }
+
 
 export default RegisterPage2
