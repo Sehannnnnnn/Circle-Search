@@ -34,7 +34,7 @@ function Community_modal() {
   ])
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container rowSpacing={2}>
         {commuBoardList.map((Board)=>(
           <Grid item xs = {12}>
             <Community_mini id={Board.id} title={Board.title} writer={Board.writer} watches={Board.watches} contents={Board.contents}/>

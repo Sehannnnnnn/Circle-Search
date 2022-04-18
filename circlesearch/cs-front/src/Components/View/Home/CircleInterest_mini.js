@@ -11,14 +11,15 @@ function CircleInterest_mini(props) {
   return (
     <div>
         <Box sx={{
-             height: 250,
+            width: '100%',
+            height: '100%',
              border: '1px solid grey'
         }}>
             <div>{CircleInfo.id}</div>
             <center>
                 <Grid container coloumspacing={1}>
                 <Grid item xs={12} sx={{
-                    height: 200,
+                    height: 300,
                     border: '1px solid grey'
                 }}>
                     {CircleInfo.img}

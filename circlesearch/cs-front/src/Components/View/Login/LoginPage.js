@@ -144,23 +144,21 @@ function LoginPage(props) {
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={10} sx={{mr : 3}}>
-                    {sessionStorage.getItem('userID')} 님 환영합니다.
+                    {sessionStorage.getItem('userID')} 님 <br></br>환영합니다.
                     </Grid>
                     <Grid item xs={12}>
                     <Button onClick={openMyCircleList} fullWidth variant='contained' color='success'>내 동아리</Button>
                     </Grid>
+                    { showcirclelist ? <SingleListAvatar/> : null}
                     <Grid item xs={12}>
                     <Button onClick={openCreateCircle} fullWidth variant='contained' color='success'>동아리 새로 만들기</Button>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={8}>
                     <Button onClick={logout} variant='outlined' fullWidth color='success'>로그아웃</Button>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Button onClick={moveToMyPage} variant='outlined' color='success' fullWidth>
-                            마이페이지
-                        </Button>
+                    <Grid item xs={8}>
+                        <Button onClick={moveToMyPage} variant='outlined' color='success' fullWidth>My Page</Button>
                     </Grid>
-                    { showcirclelist ? <SingleListAvatar/> : null}
                     </Grid>
             </Box>
     </Container>

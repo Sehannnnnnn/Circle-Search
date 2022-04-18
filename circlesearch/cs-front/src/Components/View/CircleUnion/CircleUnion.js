@@ -32,13 +32,13 @@ function CircleUnion() {
   return (
     <div>
         <Box sx={{
-                        marginTop: 6,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        bgcolor: 'white',
-                        borderRadius: 4,
-                        borderColor: 'grey.500',  
-                        padding: 4
+                    marginTop: 6,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    bgcolor: 'white',
+                    borderRadius: 4,
+                    borderColor: 'grey.500',  
+                    padding: 4
                     }}>
             <h1>{circleInfo.name}</h1>
             <Divider></Divider>

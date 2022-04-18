@@ -9,13 +9,14 @@ a:focus { text-decoration: none; }
 a:hover, a:active { text-decoration: none; }
 
 .wrapper {
+  max-width: 1920px;
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  min-height: 1080px;
+  min-height: 2000px;
 }
 
 .left_sidebar {
@@ -27,13 +28,13 @@ a:hover, a:active { text-decoration: none; }
 }
 
 .main_container {
-  grid-column: 2/5;
+  grid-column: 2/6;
   border-top: 0px;
   border-bottom: 0px;
 }
 
 .right_sidebar {
-  grid-column: 5;
+  grid-column: 6;
   background-color: #f0f7ed;
   border: 1px solid grey;
   border-top: 0px;

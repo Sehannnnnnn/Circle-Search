@@ -17,7 +17,6 @@ function Community_mini(props) {
             bgcolor : '#f0f7ed',
             borderBottom: '1px solid grey',
             p : 1,
-            pl: 5,
         }}> <Grid container>
                 <Grid item xs={10} sx={{
                     pl: 2

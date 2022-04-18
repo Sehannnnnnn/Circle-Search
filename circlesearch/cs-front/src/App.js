@@ -18,6 +18,7 @@ import CommunityPage from './Components/View/Community/CommunityPage';
 import CommunityWritePage from './Components/View/Community/CommunityWritePage';
 import CreateCirclePage from './Components/View/CreateCircle/CreateCirclePage';
 import Footer from './Components/Footer/Footer';
+import CircleSiteBase from './Components/View/CircleSite/CircleSiteBase';
 
 function App() {
   // if (!userState.logined) {
@@ -34,7 +35,7 @@ function App() {
     <Container maxWidth= "sm" className='left_sidebar'>
       <LoginPage/>
     </Container>
-    <Container maxWidth="xl" className='main_container'>
+    <Container maxWidth="lg" className='main_container'>
     <Routes>
         <Route exact path="/" element={<HomePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
@@ -47,6 +48,7 @@ function App() {
         <Route path="/community" element={<CommunityPage/>}/>
         <Route path="/community/write" element={<CommunityWritePage/>}/>
         <Route path="/create/circle/new" element={<CreateCirclePage/>}/>
+        <Route path="/Circle/:circleID" element={<CircleSiteBase/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "sm" className='right_sidebar'>
