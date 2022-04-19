@@ -16,7 +16,7 @@
     </insert>
 
     <update id="createTable" parameterType="String" >
-        CREATE table if not exists ${url}_tb(
+        CREATE table if not exists ${url}Circle_tb(
             `index` int NOT NULL AUTO_INCREMENT,
             `user_id` varchar(45) NULL,
             `manage_num` varchar (45) NULL,
@@ -34,8 +34,9 @@
             `deleted` varchar (1) NULL,
             PRIMARY KEY (`index`))
     </update>
+
     <insert id="insertManager" parameterType="String">
-        INSERT INTO ${url}_tb(user_id,manage_num,user_nickname,deleted)
+        INSERT INTO ${url}Circle_tb(user_id,manage_num,user_nickname,deleted)
         VALUES(#{id},3,#{nickname},'N')
     </insert>
 
