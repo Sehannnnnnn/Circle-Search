@@ -5,6 +5,7 @@ package com.capstone.CircleSearch.Controller;
 import com.capstone.CircleSearch.Model.dao.FindDAO;
 import com.capstone.CircleSearch.Model.dao.RequestDAO;
 import com.capstone.CircleSearch.Model.dto.FindDTO;
+import com.capstone.CircleSearch.Model.dto.RequestSelectDTO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class RequestController {
        return requestDAO.joinCircle(url,user_id,goal);
    }
    @GetMapping("Circle/agree/{url}")
-    public List<String> confirm(@PathVariable String url) throws Exception{
+    public RequestSelectDTO confirm(@PathVariable String url) throws Exception{
        return requestDAO.confirmRequest(url);
    }
     @PostMapping("Circle/agree/{url}")
@@ -37,7 +38,7 @@ public class RequestController {
         if(y.equals(agreement)){
             FindDTO findDTO = new FindDTO();
             findDTO.setId(user_id);
-           String nickname = findDAO.findUsernickname(findDTO);
+            String nickname = findDAO.findUsernickname(findDTO);
             requestDAO.agreeRequest(url, user_id);
             return requestDAO.registerCircle(url, user_id,nickname);
         }

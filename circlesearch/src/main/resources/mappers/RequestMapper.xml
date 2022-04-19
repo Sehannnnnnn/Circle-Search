@@ -8,13 +8,28 @@
         INSERT INTO ${url}Request_tb(user_id,goal,deleted)
         VALUES (#{user_id},#{goal},'N')
     </insert>
-    <select id="confirmRequest" resultType="String">
+    <select id="confirmRequest" resultType="com.capstone.CircleSearch.Model.dto.RequestSelectDTO">
         SELECT user_id,goal
         FROM  ${url}Request_tb
         WHERE deleted = "N"
     </select>
 
     <update id="agreeRequest" parameterType="String">
-        UPDATE
+        UPDATE ${url}Request_tb
+        SET deleted = 'Y'
+        WHERE user_id = #{user_id}
     </update>
+
+    <update id="rejectRequest" parameterType="String">
+        UPDATE ${url}Request_tb
+        SET deleted = 'R'
+        WHERE user_id = #{user_id}
+    </update>
+
+    <insert id="registerCircle" parameterType="String">
+        INSERT INTO ${url}Circle_tb(user_id,manage_num,user_nickname,deleted)
+        VALUES (#{user_id},1,#{user_nickname},'N')
+    </insert>
+
+
 </mapper>
