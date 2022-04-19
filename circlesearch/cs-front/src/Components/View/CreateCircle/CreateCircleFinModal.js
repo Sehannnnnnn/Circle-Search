@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Dialog, DialogTitle, Button, DialogContent, Grid, Box} from '@mui/material'
-
+import {Link} from 'react-router-dom'
 
 
 export default function CreateCircleFinModal(props) {
@@ -15,7 +15,10 @@ export default function CreateCircleFinModal(props) {
     console.log(circleInfo);
   }, [])
 
-  
+  const newTo = { 
+    pathname: "/Circle", 
+    param1: circleInfo.CircleAddress
+  };
   
   return (
       <Dialog 
@@ -42,7 +45,7 @@ export default function CreateCircleFinModal(props) {
           </p>
           </Box>
       </DialogContent>
-      <Button variant="contained" color='success'>내 동아리로 이동</Button>
+      <Button variant="contained" color='success' sx={{width: 50}}><Link to={newTo}>내 동아리로 이동</Link></Button>
     </Dialog>
   )
 }
