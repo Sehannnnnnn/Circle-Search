@@ -97,6 +97,14 @@ function CreateCirclePage(props) {
 
 export default CreateCirclePage
 
+function check1selected(arr) {
+    if (arr.length != 1) {
+        alert('분야 또는 지역을 하나씩만 선택해주세요!')
+        return false;
+    }
+    else return true
+}
+
 
 //연합동아리 생성 폼
 function CreateCircleUnion(props) {
@@ -155,18 +163,21 @@ function CreateCircleUnion(props) {
 
     //연합 동아리 생성
     const sendNewCircleUnion = () => {
+        if (check1selected(interest) && check1selected(region)) {
         let body = {
             region: circleInfo.CircleRegion[0],
             interest: circleInfo.CircleInterest[0],
             circle_name : circleInfo.CircleName,
             url : circleInfo.CircleAddress,
             id : sessionStorage.getItem("userID"),
+            purpose : circleInfo.CirclePurpose
         }
-        axios.get('/circle/register/UniCircle', body).then((res) => {
+        axios.post('/circle/register/UniCircle', body).then((res) => {
             if (res.data == 1) {setmodalOpen(true);}
             else {alert('오류발생');}
         });
         setmodalOpen(true)
+    }
         //axios 통신 이후 생성 완료 창 생성
     }
 
@@ -232,7 +243,7 @@ function CreateCircleSchool(props) {
 
     //SchoolNameList 가져오기 API
     useEffect(() => {
-       axios.get('/user/regioster3/getCollegeList').then((res) => {
+       axios.get('/user/register3/getCollegeList').then((res) => {
            setschoolNameList(res.data);
        }).catch((err) => {console.log(err)});
     }, [])
@@ -252,17 +263,20 @@ function CreateCircleSchool(props) {
       }, [interest])
 
     const sendNewCircleSchool = () => {
+        if (check1selected(interest)) {
         let body = {
             college: circleInfo.CircleSchool,
             interest: circleInfo.CircleInterest[0],
             circle_name : circleInfo.CircleName,
             url : circleInfo.CircleAddress,
             id : sessionStorage.getItem("userID"),
+            purpose : circleInfo.CirclePurpose,
         }
-        axios.get('/circle/register/CoCircle', body).then((res) => {
+        axios.post('/circle/register/CoCircle', body).then((res) => {
             if (res.data == 1) {setmodalOpen(true);}
             else {alert('오류발생');}
         });
+    }
     }
 
     

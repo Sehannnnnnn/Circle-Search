@@ -43,8 +43,8 @@ function LoginPage(props) {
     const onSubmitHandler = (event) => {
         event.preventDefault();
         let body = {
-            id : userID,
-            pw : userPW,
+            user_id : userID,
+            user_password : userPW,
         }
         console.log(body)
         axios.post("/user/login", body).then((res) => {

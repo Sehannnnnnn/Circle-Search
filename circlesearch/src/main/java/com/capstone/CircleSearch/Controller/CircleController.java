@@ -6,6 +6,7 @@ import com.capstone.CircleSearch.Model.dto.*;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,7 +44,7 @@ public class CircleController {
 
 
 
-    @GetMapping("/circle/register/CoCircle")
+    @PostMapping("/circle/register/CoCircle")
     public int insertCircle(@RequestBody InputCircleDTO inputCircleDTO
     )throws  Exception{
 
@@ -64,7 +65,7 @@ public class CircleController {
     }
 
 
-    @GetMapping("/circle/register/UniCircle")
+    @PostMapping("/circle/register/UniCircle")
     public int insertUniCircle(@RequestBody InputCircleDTO inputCircleDTO) throws Exception{
         FindDTO findDTO = new FindDTO();
         findDTO.setInterest(inputCircleDTO.getInterest());
