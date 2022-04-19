@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capstone.CircleSearch.Model.dao.FindDAO">
+
+    <select id ="findInterestcode" parameterType="com.capstone.CircleSearch.Model.dto.FindDTO" resultType="int">
+        SELECT interest_code
+        FROM Interest_tb
+        WHERE category = #{interest}
+    </select>
+
+    <select id ="findRegioncode" parameterType="com.capstone.CircleSearch.Model.dto.FindDTO" resultType="int">
+        SELECT region_code
+        FROM Region_tb
+        WHERE city = #{region}
+    </select>
+
+    <select id ="findCollegecode" parameterType="com.capstone.CircleSearch.Model.dto.FindDTO" resultType="int">
+        SELECT college_code
+        FROM College_tb
+        WHERE college_name = #{college}
+    </select>
+
+    <select id="findUsernickname" parameterType="com.capstone.CircleSearch.Model.dto.FindDTO" resultType="String">
+        SELECT user_nickname
+        FROM User_tb
+        WHERE user_id = #{id}
+    </select>
+
+
+</mapper>

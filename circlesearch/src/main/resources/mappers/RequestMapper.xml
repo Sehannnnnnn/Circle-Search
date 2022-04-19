@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capstone.CircleSearch.Model.dao.RequestDAO">
+    <insert id="joinCircle" parameterType="String">
+        INSERT INTO ${url}Request_tb(user_id,goal,deleted)
+        VALUES (#{user_id},#{goal},'N')
+    </insert>
+    <select id="confirmRequest" resultType="String">
+        SELECT user_id,goal
+        FROM  ${url}Request_tb
+        WHERE deleted = "N"
+    </select>
+
+    <update id="agreeRequest" parameterType="String">
+        UPDATE
+    </update>
+</mapper>

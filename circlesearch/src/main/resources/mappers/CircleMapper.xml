@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capstone.CircleSearch.Model.dao.CircleDAO">
+
+    <insert id="insertCoCircle" parameterType="com.capstone.CircleSearch.Model.dto.CoCircleDTO" keyProperty="index">
+        INSERT INTO CoCircle_tb(college_code , interest_code,  circle_name,purpose,url,manager)
+        VALUES(#{college_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager})
+    </insert>
+
+    <insert id="insertUniCircle" parameterType="com.capstone.CircleSearch.Model.dto.UniCircleDTO" keyProperty="index">
+        INSERT INTO UniCircle_tb(region_code , interest_code,  circle_name,purpose,url,manager)
+        VALUES(#{region_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager})
+    </insert>
+
+    <update id="createTable" parameterType="String" >
+        CREATE table if not exists ${url}_tb(
+            `index` int NOT NULL AUTO_INCREMENT,
+            `user_id` varchar(45) NULL,
+            `manage_num` varchar (45) NULL,
+            `user_nickname` varchar (45) NULL,
+            `deleted` varchar(1) NULL,
+            PRIMARY KEY (`index`))
+
+
+    </update>
+    <update id="createRequestTable" parameterType="String" >
+        CREATE table if not exists ${url}Request_tb(
+            `index` int NOT NULL AUTO_INCREMENT,
+            `user_id` varchar(45) NULL,
+            `goal` varchar (255) NULL,
+            `deleted` varchar (1) NULL,
+            PRIMARY KEY (`index`))
+    </update>
+    <insert id="insertManager" parameterType="String">
+        INSERT INTO ${url}_tb(user_id,manage_num,user_nickname,deleted)
+        VALUES(#{id},3,#{nickname},'N')
+    </insert>
+
+</mapper>

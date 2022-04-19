@@ -8,4 +8,5 @@ import java.util.List;
 public interface InterestDAO {
     List<InterestDTO> selectInterestList() throws Exception;
     int insertUserInterest(InterestInputDTO interestInputDTO);
+
 }

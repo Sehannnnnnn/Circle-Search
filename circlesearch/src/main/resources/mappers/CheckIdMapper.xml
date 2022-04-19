@@ -4,24 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.capstone.CircleSearch.Model.dao.CheckIdDAO">
-    <select id="checkUserid" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="int">
+    <select id="checkUserid" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM User_tb
-        WHERE user_id = #{id}
+        WHERE user_id = #{param}
     </select>
 
-    <select id="checkUserNickname" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="int">
+    <select id="checkUserNickname" parameterType="String" resultType="int">
         SELECT COUNT(user_nickname)
         FROM User_tb
-        WHERE User_nickname = #{id}
+        WHERE user_nickname = #{user_nickname}
     </select>
 
-    <select id="selectAllCollegeList" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="com.capstone.CircleSearch.Model.dto.CheckIdDTO">
-        SELECT College_name FROM College_tb
+    <select id="selectAllCollegeList"  resultType="String">
+        SELECT college_name FROM College_tb
     </select>
 
-    <select id="getLogin" parameterType="com.capstone.CircleSearch.Model.dto.CheckIdDTO" resultType="String">
+    <select id="getLogin" parameterType="String" resultType="String">
         SELECT user_password FROM User_tb
         WHERE user_id = #{id}
+    </select>
+    <select id="selectRegion" resultType="String">
+        SELECT city FROM Region_tb
     </select>
 </mapper>
