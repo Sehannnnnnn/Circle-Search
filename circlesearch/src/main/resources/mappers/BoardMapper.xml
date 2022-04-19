@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capstone.CircleSearch.Model.dao.BoardDAO">
+    <insert id = "newBoard"
+            parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO"
+            useGeneratedKeys="true"
+            keyProperty="seq">
+        INSERT INTO Board_tb(TITLE,CONTENTS,AUTHOR,PASSWORD)
+            VALUE (#{title}, #{contents}, #{author}, #{password})
+    </insert>
+
+    <select id="getBoard" parameterType="Integer" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        SELECT SEQ,TITLE,CONTENTS,AUTHOR
+        FROM Board_tb
+        WHERE SEQ = #{param}
+          AND DELETED = 'N'
+    </select>
+    <update id="editBoard" parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        UPDATE Board_tb
+        SET PASSWORD = PASSWORD
+        <if test="title !=null">
+            , Title = #{title}
+        </if>
+        <if test="contents != null">
+            , CONTENTS =#{contents}
+        </if>
+        <if test ="author != null">
+            , AUTHOR = #{author}
+        </if>
+        <if test ="deleted != null">
+            , DELETED =#{deleted}
+        </if>
+        WHERE SEQ =#{seq}
+    </update>
+
+    <update id="addBoardReadCount"
+            parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        UPDATE Board_tb
+        SET READS = READS+1
+        WHERE SEQ = #{seq}
+          AND DELETED ='N'
+    </update>
+</mapper>

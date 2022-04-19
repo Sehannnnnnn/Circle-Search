@@ -3,78 +3,36 @@ import axios from 'axios';
 import { Container, FormGroup, FormControlLabel, Button, Divider, Grid, Checkbox} from '@mui/material';
 import { Box } from '@mui/system';
 import { useParams, useNavigate } from 'react-router-dom'
+import InterestCheckboxes from './elements/InterestCheckboxes';
 
 
 function RegisterPage2() {
   const params = useParams()
   const navigate = useNavigate()
-  const [interestList, setinterestList] = useState([])
-  const [interestState, setinterestState] = useState({
-    '인문사회' : false,
-    '공학/자연' : false,
-    'IT/경영' : false,
-    '취업' : false,
-    '어학': false,
-    '공모전/스터디': false,
-    '창업/스타트업': false,
-    '문화/예술': false,
-    '공연/음악': false,
-    '여가/운동': false,
-    '봉사': false,
-    '여행': false,
-    '종교': false
-  })
+  const [interest, setinterest] = useState([])
+
+  const interestHandler = (newInterest) => {
+    setinterest(newInterest);
+  }  
 
   useEffect(() => {
-    axios.get("/user/register2/interest").then((response) => {
-      setinterestList(response.data)
-    })
-  }, [])
-
-  const checkInterestState = (object) => {
-    let trueList = []
-    for (var key in object) {
-      if (object[key] === true) {
-        trueList.push(key)
-      } else continue
-    }
-    if (trueList.length == 2) {
-      return trueList
-    } else return false
-    }
+    console.log(interest);
+  }, [interest])
   
-  const handleChange = (event) => {
-    setinterestState({
-      ...interestState,
-      [event.target.name]: event.target.checked,
-    });
-    checkInterestState(interestState)
-  };
-  
-  
-  //interestState 생성
-
-  var i = interestList.length;
-  console.log(i)
-  console.log('이거',interestState)
-  console.log(checkInterestState(interestState))
-  console.log(params)
-
   
   const onSubmitHandler = (event) => {
-    event.preventDefault()
-    let interest = checkInterestState(interestState)
-    if (checkInterestState(interestState)) {
+    if (interest.length == 2){
+    event.preventDefault();
+    console.log(interest)
       let body = {
-        userID : params.userID,
-        interest1 : interest[0],
-        interest2 : interest[1],
+        user_ID : params.userID,
+        user_interest1 : interest[0],
+        user_interest2 : interest[1],
       }
       axios.post('/user/register2/interest',body).then((response) => {if(response.status == 200)
       navigate(`../register3/${params.userID}`, {replace: true})
-      console.log(response.data);
     }).catch((err) => console.log(err))
-    } else alert('두개만 골라주세요!')
+    } else alert('두개만 골라주세요!');
   }
 
 
@@ -94,18 +52,7 @@ function RegisterPage2() {
             <h3>관심사 등록</h3>
             <p>환영합니다!<br></br>당신의 관심사 2가지를 선택해주세요. 서클서치가 당신에게 맞는 동아리를 찾아드립니다.</p>
             <Box component="form" onSubmit={onSubmitHandler} sx={{maxwith: 'sm'}}>
-              <FormGroup>
-              <Grid container spacing={3}>
-                {Array.from({length : i}).map((_, idx) => (
-                  <Grid item xs={5}>
-                  <FormControlLabel control={
-                    <Checkbox checked={interestState[interestList[idx].categoryS]} onChange={handleChange} name={interestList[idx].categoryS}/>
-                  } label={interestList[idx].categoryS}/>
-                  </Grid>
-                ))}
-                <Grid item xs = {12}><Divider></Divider></Grid>
-              </Grid>
-              </FormGroup>
+              <InterestCheckboxes onInterestHandler={interestHandler}/>
                 <Button
                     type="submit"
                     fullWidth
@@ -123,5 +70,6 @@ function RegisterPage2() {
     </div>
   )
 }
+
 
 export default RegisterPage2

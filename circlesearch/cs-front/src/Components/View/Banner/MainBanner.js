@@ -15,7 +15,7 @@ function MainBanner() {
       };
   return (
     <div>
-        <h2>배너광고</h2>
+        <h2>🔥 HOT 동아리</h2>
         <Slider {...settings}>
           <div>
             <Box sx={{

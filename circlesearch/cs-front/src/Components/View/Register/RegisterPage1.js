@@ -50,11 +50,9 @@ function RegisterPage1() {
         } else {
             console.log(userID, userPW)
             let body = {
-            id : userID,
-            pw : userPW,
-            email : userEmail,
-            name : "",
-            birth : "",
+            user_id : userID,
+            user_password : userPW,
+            user_email : userEmail,
         }
         console.log(body)
         axios.post('/user/register1',body).then((response) => {

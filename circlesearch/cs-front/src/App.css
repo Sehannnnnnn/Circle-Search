@@ -9,33 +9,31 @@ a:focus { text-decoration: none; }
 a:hover, a:active { text-decoration: none; }
 
 .wrapper {
-  width: 1600px;
+  max-width: 1920px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  min-height: 2000px;
 }
 
 .left_sidebar {
   grid-column: 1;
-  background-color: beige;
-  border: 1px solid grey;
+  border-right: 1px solid grey;
   border-top: 0px;
   border-bottom: 0px;
 }
 
 .main_container {
-  grid-column: 2/5;
+  grid-column: 2/6;
   border-top: 0px;
   border-bottom: 0px;
-  height: 2000px;
 }
 
 .right_sidebar {
-  grid-column: 5;
-  background-color: beige;
-  border: 1px solid grey;
+  grid-column: 6;
   border-top: 0px;
   border-bottom: 0px;
 }
@@ -45,4 +43,8 @@ a:hover, a:active { text-decoration: none; }
 }
 .link:hover {
    color: #FFF;
+}
+
+input {
+  font-size: 10px;
 }
