@@ -21,6 +21,7 @@ function HomePage() {
         setisLogined(sessionStorage.getItem('logined'));
       }
     },[]);
+
     console.log(message);
       return(
       <div>

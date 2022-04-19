@@ -8,12 +8,11 @@ function InterestCheckboxes({onInterestHandler}) {
 
     useEffect(() => {
       axios.get("/user/register2/interest").then((response) => {
-          response.data.forEach((element) => setInterestList((prevList) => [...prevList, element.categoryS]))
+          response.data.forEach((element) => setInterestList((prevList) => [...prevList, element.interest]))
       })
     }, [])
     
     useEffect(() => {
-      console.log(InterestChecked);
       onInterestHandler(InterestChecked) ;
     }, [InterestChecked])
     

@@ -2,9 +2,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, TextField, Button, Divider, Grid, MenuItem, Select, Autocomplete} from '@mui/material';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { Box } from '@mui/system';
 
 function RegisterPage3() {
@@ -22,29 +19,32 @@ function RegisterPage3() {
     {label: '건국대학교', id:3},
     {label: '고려대학교', id:4}
   ])
-  const [majorList, setmajorList] = useState([
-    {label: '산업정보시스템공', id:1},
-    {label: 'ITM', id:2},
-    {label: 'GTM', id:3},
-    {label: 'MSDE', id:4}
-  ])
   const [regionList, setregionList] = useState([
     {label: '서울', id:1},
     {label: '경기', id:2},
     {label: '대전/광주', id:3},
     {label: '대구/부산', id:4}
   ])
-  // 대학명, 학과명 api 수신 관련 개발 필요
-  // useEffect(() => {
-  //   const getCollegeList = async () =>{
-  //     try {
-  //       axios.get('/user/register3/getCollegeList').then((response) => {setcollegeList(response.data)})
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     };
-  //   }
-  //   getCollegeList();
-  // }, []);
+
+  //CollegeList, RegionList 가져오기
+  useEffect(() => {
+    const getCollegeList = async () =>{
+      try {
+        axios.get('/user/register3/getCollegeList').then((response) => {setcollegeList(() => response.data)})
+      } catch (error) {
+        console.error(error.message);
+      };
+    }
+    const getRegionList = async() => {
+      try {
+        axios.get('/user/register3/getRegionList').then((response) => {setregionList(() => response.data)})
+      } catch (error) {
+        console.error(error.message);
+      };
+    }
+    getCollegeList();
+    getRegionList();
+  }, []);
 
   const onNicknameHandler = (event) => {
         setuserNickname(event.currentTarget.value);
@@ -68,14 +68,13 @@ function RegisterPage3() {
   const onSubmitHandler = (event) => {
     event.preventDefault()
     let body = {
-      id : userID,
-      nickname : userNickname,
-      college : userCollege.label,
-      major : userMajor.label,
-      region : userRegion.label,
+      user_id : userID,
+      user_nickname : userNickname,
+      user_college : userCollege.label,
+      user_region : userRegion.label,
     }
     console.log(body)
-    axios.post('/user/register3/postUserInfo', body).then((response) => {
+    axios.get('/user/register3', body).then((response) => {
       console.log(response.status)
       navigate('../register/complete', {replace: true});
     }).catch((err) => console.log(err))
@@ -119,22 +118,6 @@ function RegisterPage3() {
                     options={collegeList}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} label="대학" />}
-                  />
-                  </Grid>
-                  <Grid item xs={12} sx={{mb: 1}}>
-                        학과 명
-                  </Grid>
-                  <Grid item xs={12} sx={{mb: 1}}>
-                    <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    value={userMajor}
-                    onChange={(event, newvalue) => {
-                      setuserMajor(newvalue);
-                    }}
-                    options={majorList}
-                    sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="학과" />}
                   />
                   </Grid>
                   <Grid item xs={12} sx={{mb: 1}}>

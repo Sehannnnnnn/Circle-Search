@@ -16,7 +16,7 @@ import {Link} from 'react-router-dom';
 
 const pages = [{
   label : '연합동아리',
-  link : '/circle/union/list'
+  link : '/union'
  },{
    label : '교내동아리',
    link : '/inschool'

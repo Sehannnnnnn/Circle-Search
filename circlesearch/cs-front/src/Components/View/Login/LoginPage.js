@@ -11,15 +11,12 @@ import axios from 'axios';
 import SingleListAvatar from '../../Avatar/SingleListAvatar';
 
 function LoginPage(props) {
-    // const auth = useSelector(state => state.auth.login)
-    // const dispatch = useDispatch()
     let navigate = useNavigate();
     
     const [userID, setuserID] = useState("");
     const [userPW, setuserPW] = useState("");
     const [isLogined, setisLogined] = useState(
         sessionStorage.getItem('islogined') == 'true');
-    //로그인 정보 sessionStorage 저장
     
     //userID로 현재 가입된 동아리 list 보기 [동아리 명, 동아리 로고] (api)
     const [showcirclelist, setshowcirclelist] = useState(false)
@@ -56,11 +53,12 @@ function LoginPage(props) {
                 sessionStorage.setItem('islogined', 'true');
                 sessionStorage.setItem('userID', userID);
                 setisLogined(true);
-                navigate("/", {replace: true});
             } else {
                 alert('로그인 실패!');
             }
-        }).catch((err) => console.log(err));
+        }).catch((err) => console.log(err)).then(() => {
+            window.location.href="/";
+        })
     }
 
     const logout = () => {
@@ -77,7 +75,7 @@ function LoginPage(props) {
     }
 
     const openCreateCircle = () => {
-        navigate("/create/circle/new", {replace: true});
+        navigate("/create/circle/new", {replace: true})
     }
         
     if (!isLogined) {
@@ -138,9 +136,10 @@ function LoginPage(props) {
                 flexDirection: 'column',
                 alignItems: 'center',
                 bgcolor: 'white',
+                border: 1,
+                borderColor: 'grey.500',
                 borderRadius: 4,
-                borderColor: 'grey.500',  
-                padding: 2
+                padding: 3
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={10} sx={{mr : 3}}>
@@ -152,12 +151,6 @@ function LoginPage(props) {
                     { showcirclelist ? <SingleListAvatar/> : null}
                     <Grid item xs={12}>
                     <Button onClick={openCreateCircle} fullWidth variant='contained' color='success'>동아리 새로 만들기</Button>
-                    </Grid>
-                    <Grid item xs={8}>
-                    <Button onClick={logout} variant='outlined' fullWidth color='success'>로그아웃</Button>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Button onClick={moveToMyPage} variant='outlined' color='success' fullWidth>My Page</Button>
                     </Grid>
                     </Grid>
             </Box>

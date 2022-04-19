@@ -109,10 +109,8 @@ function CreateCircleUnion(props) {
         CircleInterest : [],
         CircleRegion : [],
     })
-    const [region, setregion] = useState([])
-    const [regionList, setregionList] = useState([
-        "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"
-    ])
+    const [region, setregion] = useState([]);
+    const [regionList, setregionList] = useState([]);
     const [modalOpen, setmodalOpen] = useState(false);
 
     const regionhandleChange =(event) => {
@@ -126,12 +124,17 @@ function CreateCircleUnion(props) {
             setregion(newArr)
         }
     }
-
     const [interest, setinterest] = useState([])
     const interestHandler = (newInterest) => {
         setinterest(newInterest)
     }
-
+    //RegionList 가져오기 API
+    useEffect(() => {
+      axios.get('/user/register3/getRegionList').then((res) => {
+          setregionList(res.data);
+      }).catch((err) => {console.log(err)})
+    }, [])
+    
     useEffect(() => {
         setcircleInfo((prev) => {
             return {...prev,
@@ -149,8 +152,20 @@ function CreateCircleUnion(props) {
     useEffect(()=> {
         console.log(circleInfo)
     }, [circleInfo])
+
     //연합 동아리 생성
     const sendNewCircleUnion = () => {
+        let body = {
+            region: circleInfo.CircleRegion[0],
+            interest: circleInfo.CircleInterest[0],
+            circle_name : circleInfo.CircleName,
+            url : circleInfo.CircleAddress,
+            id : sessionStorage.getItem("userID"),
+        }
+        axios.get('/circle/register/UniCircle', body).then((res) => {
+            if (res.data == 1) {setmodalOpen(true);}
+            else {alert('오류발생');}
+        });
         setmodalOpen(true)
         //axios 통신 이후 생성 완료 창 생성
     }
@@ -204,9 +219,7 @@ function CreateCircleSchool(props) {
     }
 
     const [schoolName, setschoolName] = useState("")
-    const [schoolNameList, setschoolNameList] = useState([
-        "서울과학기술대학교", "서울여자대학교", "고려대학교", "연세대학교", "건국대학교"
-    ]);
+    const [schoolNameList, setschoolNameList] = useState([]);
 
     const [modalOpen, setmodalOpen] = useState(false);
     const handleModalClose = () => {
@@ -216,8 +229,12 @@ function CreateCircleSchool(props) {
     const handleChange = (event) => {
         setschoolName(event.target.value);
     }
+
+    //SchoolNameList 가져오기 API
     useEffect(() => {
-        //학교 명단 가져와서 setschoolName 필요
+       axios.get('/user/regioster3/getCollegeList').then((res) => {
+           setschoolNameList(res.data);
+       }).catch((err) => {console.log(err)});
     }, [])
 
     useEffect(() => {
@@ -235,7 +252,17 @@ function CreateCircleSchool(props) {
       }, [interest])
 
     const sendNewCircleSchool = () => {
-        setmodalOpen(true);
+        let body = {
+            college: circleInfo.CircleSchool,
+            interest: circleInfo.CircleInterest[0],
+            circle_name : circleInfo.CircleName,
+            url : circleInfo.CircleAddress,
+            id : sessionStorage.getItem("userID"),
+        }
+        axios.get('/circle/register/CoCircle', body).then((res) => {
+            if (res.data == 1) {setmodalOpen(true);}
+            else {alert('오류발생');}
+        });
     }
 
     
