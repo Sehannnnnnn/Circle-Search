@@ -106,7 +106,7 @@ public class UserController {
         return checkIdDAO.selectRegion();
     }
     //Register3 제작 필요 id는 받아오고 닉네임,birth,대학,지역 입력
-    @GetMapping("/user/register3")
+    @PostMapping("/user/register3")
     public int insertuserinfo(@RequestBody InputUserDTO inputuserDTO) throws Exception{
         FindDTO findDTO = new FindDTO();
         findDTO.setCollege(inputuserDTO.getUser_college());
@@ -115,7 +115,6 @@ public class UserController {
         int b= findDAO.findRegioncode(findDTO);
         UserDTO userDTO = new UserDTO(inputuserDTO.getUser_id(),a,b,0,0,inputuserDTO.getUser_birth(),"","", inputuserDTO.getUser_nickname(), "");
         return userDAO.insertUsersInfo(userDTO);
-
     }
 
 

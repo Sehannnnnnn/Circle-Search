@@ -70,13 +70,13 @@ function RegisterPage3() {
     let body = {
       user_id : userID,
       user_nickname : userNickname,
-      user_college : userCollege.label,
-      user_region : userRegion.label,
+      user_college : userCollege,
+      user_region : userRegion,
     }
     console.log(body)
-    axios.get('/user/register3', body).then((response) => {
+    axios.post('/user/register3', body).then((response) => {
       console.log(response.status)
-      navigate('../register/complete', {replace: true});
+      navigate('/register/complete', {replace: true});
     }).catch((err) => console.log(err))
   }
 

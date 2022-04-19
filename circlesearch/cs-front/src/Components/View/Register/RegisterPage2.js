@@ -25,7 +25,7 @@ function RegisterPage2() {
     event.preventDefault();
     console.log(interest)
       let body = {
-        user_ID : params.userID,
+        user_id : params.userID,
         user_interest1 : interest[0],
         user_interest2 : interest[1],
       }
