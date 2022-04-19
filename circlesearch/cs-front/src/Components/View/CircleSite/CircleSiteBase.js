@@ -1,13 +1,19 @@
 import { Container, Grid, Stack, Divider, Avatar, Button, Box } from '@mui/material'
 import { width } from '@mui/system'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import imgA from '../../../static/img/222.png'
 import Community_modal from '../Home/Community_modal'
 import imgB from '../../../static/img/bbb.jpeg'
 import CircleInterest_mini from '../Home/CircleInterest_mini'
+import {useParams} from 'react-router-dom'
 
 function CircleSiteBase() {
     // param에 따라 circleInfo 가져오기
+    const params = useParams();
+    const [Circle, setCircle] = useState(params.CircleID);
+    
+    
+
 const [circleInfo, setcircleInfo] = useState({
     Name:"DDC",
     Type: "연합",
@@ -27,7 +33,9 @@ const [Gallery, setGallery] = useState([
 
   return (
     <div>
-        <Container maxWidth="xl" sx={{
+        <Container maxWidth = "xl"
+        sx = {
+        		{
             height : '100%'
         }}>
             <Box sx={{display:'grid', gridAutoColumns: '1fr', gap: 2}} >
