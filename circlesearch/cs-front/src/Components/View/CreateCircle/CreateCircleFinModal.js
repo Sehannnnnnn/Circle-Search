@@ -16,14 +16,13 @@ export default function CreateCircleFinModal(props) {
   }, [])
 
   const newTo = { 
-    pathname: "/Circle", 
-    param1: circleInfo.CircleAddress
+    pathname: `/Circle/${circleInfo.CircleAddress}`,
   };
   
   return (
       <Dialog 
       fullWidth={true} 
-      maxWidth='sm' 
+      maxWidth='sm'
       onClose={handleClose} 
       open={open}>
       <DialogTitle sx={{borderBottom: 'solid grey 2px', lineHeight: '120%'}}>축하드려요! <br></br>{circleInfo.CircleName} 이(가) 성공적으로 생성 되었습니다!</DialogTitle>
@@ -44,8 +43,8 @@ export default function CreateCircleFinModal(props) {
           설명 : {circleInfo.CirclePurpose}<br></br>
           </p>
           </Box>
+          <Button variant="contained" color='success'><Link to={newTo}>내 동아리로 이동</Link></Button>
       </DialogContent>
-      <Button variant="contained" color='success' sx={{width: 50}}><Link to={newTo}>내 동아리로 이동</Link></Button>
     </Dialog>
   )
 }

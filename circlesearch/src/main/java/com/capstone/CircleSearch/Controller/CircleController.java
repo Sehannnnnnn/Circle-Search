@@ -5,10 +5,10 @@ import com.capstone.CircleSearch.Model.dao.FindDAO;
 import com.capstone.CircleSearch.Model.dto.*;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @MapperScan(basePackages = "com.capstone.CircleSearch.Model.dao")
@@ -25,7 +25,6 @@ public class CircleController {
 
     @GetMapping("/createTest")
     public int createTable(@RequestBody InputCircleDTO inputCircleDTO)throws Exception{
-
         return circleDAO.createTable(inputCircleDTO.getUrl());
     }
 
@@ -39,9 +38,6 @@ public class CircleController {
         return findDAO.findUsernickname(findDTO);
 
     }
-
-
-
 
 
     @PostMapping("/circle/register/CoCircle")
@@ -78,5 +74,18 @@ public class CircleController {
         circleDAO.insertUniCircle(param);
         circleDAO.createTable(inputCircleDTO.getUrl());
         return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
+    }
+
+    @GetMapping("/circle/uni/interest")
+    public List<UniCircleDTO> getUniCircle(@RequestParam FindDTO findDTO) throws Exception {
+        int iCode;
+        int rCode;
+        if (findDTO.getInterest() != "") {
+            iCode = findDAO.findInterestcode(findDTO);
+        } else iCode = 0;
+        if (findDTO.getRegion() != "") {
+            rCode = findDAO.findRegioncode(findDTO);
+        } else rCode = 0;
+        return circleDAO.selectUniCircle(iCode, rCode);
     }
 }

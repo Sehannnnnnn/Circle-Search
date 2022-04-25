@@ -20,15 +20,9 @@ import CreateCirclePage from './Components/View/CreateCircle/CreateCirclePage';
 import Footer from './Components/Footer/Footer';
 import CircleSiteBase from './Components/View/CircleSite/CircleSiteBase';
 import CircleInSchoolPage from './Components/View/CircleInSchool/CircleInSchoolPage';
+import CircleSiteManage from './Components/View/CircleSite/CircleSiteManage';
 
 function App() {
-  // if (!userState.logined) {
-  //   return (
-  //     <div className="App">
-  //       <LandingPage />
-  //     </div>
-  //   )
-  // } 
   return (
     <div className="App">
     <TopPannel/>
@@ -51,6 +45,7 @@ function App() {
         <Route path="/community/write" element={<CommunityWritePage/>}/>
         <Route path="/create/circle/new" element={<CreateCirclePage/>}/>
         <Route path="/Circle/:circleID" element={<CircleSiteBase/>}/>
+        <Route path="/Circle/manage/:circleID/:userID" element={<CircleSiteManage/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "sm" className='right_sidebar'>

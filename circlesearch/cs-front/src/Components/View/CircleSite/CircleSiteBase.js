@@ -1,5 +1,4 @@
 import { Container, Grid, Stack, Divider, Avatar, Button, Box } from '@mui/material'
-import { width } from '@mui/system'
 import React, {useState, useEffect} from 'react'
 import imgA from '../../../static/img/222.png'
 import Community_modal from '../Home/Community_modal'
@@ -12,24 +11,27 @@ function CircleSiteBase() {
     const params = useParams();
     const [Circle, setCircle] = useState(params.CircleID);
     
+    const [circleInfo, setcircleInfo] = useState({
+        Name:"DDC",
+        Type: "연합",
+        Manager: "micke2",
+        Region:["서울"],
+        School:"",
+        Interest: ["IT/경영"],
+        Purpose:"서울권 개발자 연합 동아리 입니다.",
+    })
+
+    const [Gallery, setGallery] = useState([
+        {id : 1, name: '게시물1', img: 'img', logo: 'logo'},
+        {id : 2, name: '게시물2', img: 'img', logo: 'logo'},
+        {id : 3, name: '게시물3', img: 'img', logo: 'logo'},
+        {id : 4, name: '게시물4', img: 'img', logo: 'logo'},
+    ])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     
-
-const [circleInfo, setcircleInfo] = useState({
-    Name:"DDC",
-    Type: "연합",
-    Manager: "micke2",
-    Region:["서울"],
-    School:"",
-    Interest: ["IT/경영"],
-    Purpose:"서울권 개발자 연합 동아리 입니다.",
-})
-
-const [Gallery, setGallery] = useState([
-    {id : 1, name: '게시물1', img: 'img', logo: 'logo'},
-    {id : 2, name: '게시물2', img: 'img', logo: 'logo'},
-    {id : 3, name: '게시물3', img: 'img', logo: 'logo'},
-    {id : 4, name: '게시물4', img: 'img', logo: 'logo'},
-])
 
   return (
     <div>

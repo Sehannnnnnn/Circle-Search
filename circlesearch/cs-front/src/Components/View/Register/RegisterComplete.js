@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import LoginPage from '../Login/LoginPage'
 import { Box } from '@mui/system';
 import { Container } from '@mui/material'
 
 function RegisterComplete() {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+  
   return (
     <div>
         <Container component="main" maxWidth="sm">
