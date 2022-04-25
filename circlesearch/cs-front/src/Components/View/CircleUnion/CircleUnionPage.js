@@ -1,13 +1,26 @@
 import React,{useState, useEffect} from 'react'
-import {Box, Divider} from '@mui/material'
+import {Box, Divider, Stack, Grid} from '@mui/material'
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import CircleUnionList from './CircleUnionList';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    height: 100,
+    paddingLeft: 40
+    }));
 
 function CircleUnionPage() {
+    const navigate = useNavigate();
+    const [circleList, setcircleList] = useState([]);
     const [interests, setinterests] = useState([]);
     const [regions, setregions] = useState([]);
     const [Checked, setChecked] = useState({
@@ -17,11 +30,17 @@ function CircleUnionPage() {
 
 
     const onRegionHandler = (event) => {
-        setChecked({...Checked, region : event.currentTarget.value});
+            setChecked({...Checked, region : event.currentTarget.value});
     }
     
     const onInterestHandler = (event) => {
         setChecked({...Checked, interest : event.currentTarget.value});
+    }
+
+    function fetchCircles() {
+        axios.get('circle/uni', {params : {interest: Checked.interest, region: Checked.region}})
+        .then((response) => setcircleList(response.data))
+        .catch((err) => {console.log(err)});
     }
 
     useEffect(() => {
@@ -31,11 +50,20 @@ function CircleUnionPage() {
       axios.get('user/register3/getRegionList').then((response) => {
           setregions(response.data);
       });
+      fetchCircles();
     }, [])
-    
+
     useEffect(() => {
-        console.log(Checked)
+        fetchCircles();
     }, [Checked])
+
+    useEffect(() => {
+        console.log(circleList);
+    }, [circleList])
+
+    const onlistClickHandler = (url) => {
+        navigate(`../Circle/${url}`, {replace: true})
+    }
 
   return (
     <div>
@@ -70,7 +98,16 @@ function CircleUnionPage() {
             borderRadius: 2,
             pb: 3,
             mt: 2}}>
-                <CircleUnionList></CircleUnionList>
+                <Stack spacing={2}>
+                {circleList.map((circle) => (
+                        <Item onClick={() => onlistClickHandler(circle.url)} >
+                            <Grid container spacing={1}>
+                                <Grid item xs={2}>{circle.circle_name}</Grid>
+                                <Grid item xs={6}>{circle.purpose}</Grid>
+                            </Grid>
+                        </Item>
+                    ))}
+                </Stack>
         </Box>
         </center>
     </div>
