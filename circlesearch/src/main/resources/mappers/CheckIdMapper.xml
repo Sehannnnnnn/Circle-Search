@@ -27,10 +27,8 @@
     <select id="selectRegion" resultType="String">
         SELECT city FROM Region_tb
     </select>
-
     <select id="getMyCircle" resultType="java.util.HashMap">
         SELECT circle_name,url FROM MyCircle_tb
         WHERE user_id = #{user_id}
     </select>
-
 </mapper>

@@ -1,5 +1,7 @@
 package com.capstone.CircleSearch.Model.dao;
 
+import com.capstone.CircleSearch.Model.dto.MyCircleDTO;
+
 import java.util.HashMap;
 import java.util.List;
 

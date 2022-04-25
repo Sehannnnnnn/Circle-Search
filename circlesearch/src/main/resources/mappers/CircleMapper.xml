@@ -47,4 +47,14 @@
           AND region_code LIKE IF(#{rCode} = 0, '%', #{rCode})
     </select>
 
+    <insert id="storeMyCircle" parameterType="String">
+        INSERT INTO MyCircle_tb(user_id,circle_name,url,grade)
+        VALUES(#{id},#{circle_name},#{url},3)
+    </insert>
+
+    <select id="selectCoCircle" parameterType="int" resultType="com.capstone.CircleSearch.Model.dto.CoCircleDTO">
+        SELECT *
+        FROM CoCircle_tb
+        WHERE college_code = #{college_code}
+    </select>
 </mapper>
