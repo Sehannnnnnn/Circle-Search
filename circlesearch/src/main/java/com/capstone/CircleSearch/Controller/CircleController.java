@@ -77,14 +77,16 @@ public class CircleController {
         return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
     }
 
-    @GetMapping("/circle/uni/")
-    public List<UniCircleDTO> getUniCircle(@RequestParam FindDTO findDTO) throws Exception {
+
+    @GetMapping("/circle/uni")
+    public List<UniCircleDTO> getUniCircle(@RequestParam String interest, @RequestParam String region) throws Exception {
         int iCode;
         int rCode;
-        if (findDTO.getInterest() != "") {
+        FindDTO findDTO = new FindDTO(region, "", interest, "");
+        if (interest != "") {
             iCode = findDAO.findInterestcode(findDTO);
         } else iCode = 0;
-        if (findDTO.getRegion() != "") {
+        if (region != "") {
             rCode = findDAO.findRegioncode(findDTO);
         } else rCode = 0;
         return circleDAO.selectUniCircle(iCode, rCode);
