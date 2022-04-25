@@ -1,35 +1,41 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {Box, Divider} from '@mui/material'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import CircleUnionList from './CircleUnionList';
+import axios from 'axios';
 
 function CircleUnionPage() {
-    const [interestState_Study, setinterestState_Study] = useState([
-        {label :'인문사회', checked: false},
-        {label :'공학/자연', checked : false},
-        {label :'IT/경영', checked : false},
-        {label :'취업', checked : false},
-        {label :'어학', checked: false},
-        {label :'공모전/스터디', checked: false},
-        {label :'창업/스타트업', checked: false},
-    ])
-    const [interestState_Play, setinterestState_Play] = useState([
-        {label :'문화/예술', checked: false},
-        {label :'공연/음악', checked: false},
-        {label :'여가/운동', checked: false},
-        {label :'봉사', checked: false},
-        {label :'여행', checked: false},
-        {label :'종교', checked: false}
-    ])
-    const [CheckedCategory, setCheckedCategory] = useState("")
+    const [interests, setinterests] = useState([]);
+    const [regions, setregions] = useState([]);
+    const [Checked, setChecked] = useState({
+        interest : "",
+        region : ""
+    })
 
-    const onChangeHandler = (event) => {
-        setCheckedCategory(event.target.value)
-        console.log(CheckedCategory)
+
+    const onRegionHandler = (event) => {
+        setChecked({...Checked, region : event.currentTarget.value});
     }
+    
+    const onInterestHandler = (event) => {
+        setChecked({...Checked, interest : event.currentTarget.value});
+    }
+
+    useEffect(() => {
+      axios.get('/user/register2/interest').then((response) => {
+        response.data.forEach((element) => setinterests((prevList) => [...prevList, element.interest]))
+      });
+      axios.get('user/register3/getRegionList').then((response) => {
+          setregions(response.data);
+      });
+    }, [])
+    
+    useEffect(() => {
+        console.log(Checked)
+    }, [Checked])
 
   return (
     <div>
@@ -40,23 +46,21 @@ function CircleUnionPage() {
             pb: 3,
             mt: 2
         }}>
-            <FormControl>
-            <h3>학술</h3>
+            <FormControl sx={{pl: 3, pr: 3}}>
+            <h3>관심 분야</h3>
             <Divider></Divider>
             <RadioGroup row
-            value={CheckedCategory}
-            onChange={onChangeHandler}>
-                {interestState_Study.map((category) => (
-                    <FormControlLabel value={category.label} control={<Radio />} label={category.label} color='success'/>
+            sx={{p : 4}}>
+                {interests.map((interest) => (
+                    <FormControlLabel control={<Radio onChange={onInterestHandler} value={interest}/>} label={interest} color='success' sx={{mr: 3}}/>
                 ))}
             </RadioGroup>
-            <h3>취미</h3>
+            <h3>활동 지역</h3>
             <Divider></Divider>
             <RadioGroup row
-            value={CheckedCategory}
-            onChange={onChangeHandler}>
-                {interestState_Play.map((category) => (
-                    <FormControlLabel value={category.label} control={<Radio />} label={category.label} color='success'/>
+            sx={{p : 4}}>
+                {regions.map((region) => (
+                    <FormControlLabel control={<Radio onChange={onRegionHandler} value={region}/>} label={region} color='success' sx={{mr: 3}}/>
                 ))}
             </RadioGroup>
             </FormControl>

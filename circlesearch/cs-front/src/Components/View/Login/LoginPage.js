@@ -1,5 +1,5 @@
 import { TextField, Box, Button, Container, Grid, Link } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import { loginSuccess } from '../../../Slices/authSlice';
@@ -13,26 +13,13 @@ import SingleListAvatar from '../../Avatar/SingleListAvatar';
 function LoginPage(props) {
     let navigate = useNavigate();
     
-    const [userID, setuserID] = useState("");
+    const [userID, setuserID] = useState(sessionStorage.getItem("userID"));
     const [userPW, setuserPW] = useState("");
     const [isLogined, setisLogined] = useState(
         sessionStorage.getItem('islogined') == 'true');
     
     //userID로 현재 가입된 동아리 list 보기 [동아리 명, 동아리 로고] (api)
     const [showcirclelist, setshowcirclelist] = useState(false)
-    const [mycircleList, setmycircleList] = useState([
-        { 
-            name : '큐시즘',
-            logo : 'img'
-        }, {
-            name: '잔디',
-            logo: 'img2'
-        }, {
-            name: '한국홍보대사연합',
-            logo: 'img3'
-        }
-     ])
-
 
     const onIDHandler = (event) => {
         setuserID(event.currentTarget.value)
@@ -64,10 +51,11 @@ function LoginPage(props) {
     const logout = () => {
         setisLogined(false);
         sessionStorage.clear();
-    }
+    }    
+
 
     const openMyCircleList = () => {
-        setshowcirclelist(true)
+        setshowcirclelist(true);
     }
 
     const moveToMyPage = () => {
@@ -148,7 +136,7 @@ function LoginPage(props) {
                     <Grid item xs={12}>
                     <Button onClick={openMyCircleList} fullWidth variant='contained' color='success'>내 동아리</Button>
                     </Grid>
-                    { showcirclelist ? <SingleListAvatar/> : null}
+                    { showcirclelist ? <SingleListAvatar userid={userID}/> : null}
                     <Grid item xs={12}>
                     <Button onClick={openCreateCircle} fullWidth variant='contained' color='success'>동아리 새로 만들기</Button>
                     </Grid>

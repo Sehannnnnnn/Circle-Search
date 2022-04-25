@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -118,4 +119,8 @@ public class UserController {
     }
 
 
+    @GetMapping("/user/mycircle")
+    public List<HashMap<String,String>> getMyCircle(@RequestParam String user_id) throws Exception {
+        return checkIdDAO.getMyCircle(user_id);
+    }
 }
