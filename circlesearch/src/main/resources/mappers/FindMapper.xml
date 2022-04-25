@@ -28,6 +28,26 @@
         FROM User_tb
         WHERE user_id = #{id}
     </select>
+    <select id="findUserInterest1" parameterType="String" resultType="int">
+        SELECT user_interest1
+        FROM User_tb
+        WHERE user_id=#{user_id}
+    </select>
+    <select id="findUserInterest2" parameterType="String" resultType="int">
+        SELECT user_interest2
+        FROM User_tb
+        WHERE user_id=#{user_id}
+    </select>
+    <select id="selectCategory1" parameterType="int" resultType="String">
+        SELECT category
+        FROM Interest_tb
+        WHERE interest_code=#{interest1}
+    </select>
+    <select id="selectCategory2" parameterType="int" resultType="String">
+        SELECT category
+        FROM Interest_tb
+        WHERE interest_code=#{interest2}
+    </select>
 
 
 </mapper>

@@ -24,15 +24,15 @@ public class RequestController {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private FindDAO findDAO;
 
-   @GetMapping("Circle/join/{url}")
-    public int wantJoin(@PathVariable String url,@RequestParam String user_id, @RequestParam String goal) throws Exception {
+   @GetMapping("Circle/join")
+    public int wantJoin(@RequestParam String url,@RequestParam String user_id, @RequestParam String goal) throws Exception {
        return requestDAO.joinCircle(url,user_id,goal);
    }
-   @GetMapping("Circle/agree/{url}")
+   @GetMapping("Circle/agree")
     public RequestSelectDTO confirm(@PathVariable String url) throws Exception{
        return requestDAO.confirmRequest(url);
    }
-    @PostMapping("Circle/agree/{url}")
+    @PostMapping("Circle/agree")
     public int agreeJoin(@PathVariable String url,@RequestParam String user_id, @RequestParam String agreement) throws Exception{
         String y = "Y";
         if(y.equals(agreement)){

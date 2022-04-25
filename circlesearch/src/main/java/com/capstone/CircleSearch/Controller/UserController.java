@@ -117,10 +117,21 @@ public class UserController {
         UserDTO userDTO = new UserDTO(inputuserDTO.getUser_id(),a,b,0,0,inputuserDTO.getUser_birth(),"","", inputuserDTO.getUser_nickname(), "");
         return userDAO.insertUsersInfo(userDTO);
     }
-
-
     @GetMapping("/user/mycircle")
-    public List<HashMap<String,String>> getMyCircle(@RequestParam String user_id) throws Exception {
+    public List<HashMap<String,String>> getMyCircle(@RequestParam String user_id) throws Exception{
         return checkIdDAO.getMyCircle(user_id);
     }
+
+    @GetMapping("/user/getInterest/category")
+    public String[] selectInterestName(@RequestParam String user_id) throws Exception{
+       int interest1= findDAO.findUserInterest1(user_id);
+       int interest2 = findDAO.findUserInterest2(user_id);
+       String category1 = findDAO.selectCategory1(interest1);
+       String category2 = findDAO.selectCategory2(interest2);
+       String [] category = new String[2];
+        category[0] = category1;
+        category[1] = category2;
+       return category;
+    }
+
 }

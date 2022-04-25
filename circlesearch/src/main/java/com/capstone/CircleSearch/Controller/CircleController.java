@@ -53,6 +53,7 @@ public class CircleController {
         String c = String.valueOf(findDAO.findUsernickname(findDTO));
         final CoCircleDTO param = new CoCircleDTO(0,a,b, inputCircleDTO.getCircle_name(), inputCircleDTO.getPurpose(), null, inputCircleDTO.getUrl(),inputCircleDTO.getId());
         circleDAO.insertCoCircle(param);
+        circleDAO.storeMyCircle(inputCircleDTO.getId(),inputCircleDTO.getCircle_name(),inputCircleDTO.getUrl());
         circleDAO.createTable(inputCircleDTO.getUrl());
         circleDAO.createRequestTable(inputCircleDTO.getUrl());
         return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
@@ -76,7 +77,7 @@ public class CircleController {
         return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
     }
 
-    @GetMapping("/circle/uni/interest")
+    @GetMapping("/circle/uni/")
     public List<UniCircleDTO> getUniCircle(@RequestParam FindDTO findDTO) throws Exception {
         int iCode;
         int rCode;
@@ -88,4 +89,17 @@ public class CircleController {
         } else rCode = 0;
         return circleDAO.selectUniCircle(iCode, rCode);
     }
+
+
+
+    //4.	School로 교내동아리 정보 가져오는 API
+    @GetMapping("circle/co")
+    public List<CoCircleDTO> getCoCircle(@RequestParam String college) throws Exception{
+        FindDTO findDTO = new FindDTO();
+        findDTO.setCollege(college);
+        int a = findDAO.findCollegecode(findDTO);
+        return circleDAO.selectCoCircle(a);
+
+    }
+
 }
