@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyCircleDTO {
-    private String circle_name;
-    private String url;
+    private String user_id;
+    private int grade;
 }
