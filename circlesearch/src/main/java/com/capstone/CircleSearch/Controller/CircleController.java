@@ -73,6 +73,7 @@ public class CircleController {
         String c = String.valueOf(findDAO.findUsernickname(findDTO));
         final UniCircleDTO param = new UniCircleDTO(0,a,b, inputCircleDTO.getCircle_name(), inputCircleDTO.getPurpose(), null, inputCircleDTO.getUrl(),inputCircleDTO.getId());
         circleDAO.insertUniCircle(param);
+        circleDAO.storeMyCircle(inputCircleDTO.getId(),inputCircleDTO.getCircle_name(),inputCircleDTO.getUrl());
         circleDAO.createTable(inputCircleDTO.getUrl());
         return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
     }
@@ -103,5 +104,30 @@ public class CircleController {
         return circleDAO.selectCoCircle(a);
 
     }
+    @GetMapping("/check/grade") //관리자 맞으면 Y 아니면 N
+    public String checkGrade(@RequestParam String user_id , @RequestParam String circle_name) throws Exception{
+       int grade = circleDAO.checkMygrade(user_id,circle_name);
+       String manager;
+       if (grade == 3 || grade ==2){
+           manager = "Y";
+       }
+       else{
+           manager = "N";
+       }
+       return manager;
+    }
+    @GetMapping("/check/member") // circle_name입력 --> 회원아이디, 등급 나오는 API
+    public List<MyCircleDTO> checkCirclemember(@RequestParam String circle_name) throws Exception{
+        return circleDAO.circlemember(circle_name);
+    }
+    @GetMapping("/check/circlename")
+    public List<String> getCircle_name(@RequestParam String user_id) throws Exception{
+        return circleDAO.getcirclename(user_id);
+    }
+    @GetMapping("/check/managecircle")
+    public List<String> getMangeCircle(@RequestParam String user_id) throws Exception{
+        return circleDAO.getmanagecircle(user_id);
+    }
+
 
 }
