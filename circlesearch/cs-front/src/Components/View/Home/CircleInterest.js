@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {Divider, Grid, Button} from '@mui/material'
-import CircleInterest_mini from './CircleInterest_mini';
+import { Grid, Button } from '@mui/material'
+import CircleInterestMini from './CircleInterestMini';
 import axios from 'axios';
 
 function CircleInterest(props) {
@@ -69,7 +69,7 @@ function CircleInterest(props) {
                 <Grid container spacing ={2}>
                     {interest1Circle.map((circle)=>(
                         <Grid item xs = {6}>
-                        <CircleInterest_mini id={circle.id} name={circle.name} img={circle.img} logo={circle.logo}/>
+                        <CircleInterestMini id={circle.id} name={circle.name} img={circle.img} logo={circle.logo}/>
                         </Grid>
                     ))
                     }
@@ -80,7 +80,7 @@ function CircleInterest(props) {
                 <Grid container spacing ={2}>
                 {interest2Circle.map((circle)=>(
                             <Grid item xs = {6}>
-                            <CircleInterest_mini id={circle.id} name={circle.name} img={circle.img} logo={circle.logo}/>
+                            <CircleInterestMini id={circle.id} name={circle.name} img={circle.img} logo={circle.logo}/>
                             </Grid>
                         ))
                         }

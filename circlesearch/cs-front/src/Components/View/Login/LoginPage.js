@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { loginSuccess } from '../../../Slices/authSlice';
 // import MainBanner from '../Banner/MainBanner';
-// import session from 'express-session';
-// import { set } from 'date-fns';
 import axios from 'axios';
 
 import SingleListAvatar from '../../Avatar/SingleListAvatar';
+import KakaoLogin from './SocialLogin/KakaoLogin';
 
 function LoginPage(props) {
     let navigate = useNavigate();
@@ -97,14 +96,10 @@ function LoginPage(props) {
                         >
                             로그인 하기
                         </Button>
+                        <KakaoLogin />
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    아이디 찾기
-                                </Link>
-                            </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/regisrer1" variant="body2">
                                     회원가입 하기
                                 </Link>
                             </Grid>

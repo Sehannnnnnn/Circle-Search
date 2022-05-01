@@ -3,7 +3,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import {Box, Divider, Grid} from '@mui/material'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
-function Community_mini(props) {
+function CommunityMini(props) {
     const [board, setboard] = useState({
             id: props.id,
             title: props.title.substr(0,20),
@@ -35,4 +35,4 @@ function Community_mini(props) {
   )
 }
 
-export default Community_mini
+export default CommunityMini
