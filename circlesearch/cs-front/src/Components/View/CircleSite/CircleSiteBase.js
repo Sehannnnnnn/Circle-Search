@@ -1,9 +1,9 @@
 import { Container, Grid, Stack, Divider, Avatar, Button, Box } from '@mui/material'
 import React, {useState, useEffect} from 'react'
 import imgA from '../../../static/img/222.png'
-import Community_modal from '../Home/Community_modal'
+import CommunityModal from '../Home/CommunityModal'
 import imgB from '../../../static/img/bbb.jpeg'
-import CircleInterest_mini from '../Home/CircleInterest_mini'
+import CircleInterestMini from '../Home/CircleInterestMini'
 import {useParams} from 'react-router-dom'
 
 function CircleSiteBase() {
@@ -50,7 +50,7 @@ function CircleSiteBase() {
                             <Divider></Divider>
                             <ul style={{lineHeight: '140%', fontSize: 18}}>
                                 <li>구분 : {circleInfo.Type}동아리</li>
-                                <li>{circleInfo.Type == "연합" ? `지역 : ${circleInfo.Region.toString()}` : `학교 : ${circleInfo.School}`}</li>
+                                <li>{circleInfo.Type === "연합" ? `지역 : ${circleInfo.Region.toString()}` : `학교 : ${circleInfo.School}`}</li>
                                 <li>분야 : {circleInfo.Interest.toString()}</li>
                                 <li>매니저 : {circleInfo.Manager}</li>
                             </ul>
@@ -79,13 +79,13 @@ function CircleSiteBase() {
                     <Grid container spacing ={2}>
                     {Gallery.map((galley)=>(
                         <Grid item xs = {6}>
-                        <CircleInterest_mini id={galley.id} name={galley.name} img={galley.img} logo={galley.logo}/>
+                        <CircleInterestMini id={galley.id} name={galley.name} img={galley.img} logo={galley.logo}/>
                         </Grid>
                     ))
                     }
                 </Grid>
                     <h2>최근 게시물</h2>
-                    <Community_modal/>
+                    <CommunityModal/>
                     </Box>
                 </Box>
             </Box>

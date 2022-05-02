@@ -1,8 +1,8 @@
 import React from 'react'
-import Community_modal from '../Home/Community_modal'
+import CommunityModal from '../Home/CommunityModal'
 import {Divider, Fab, Button} from '@mui/material'
 import CreateIcon from '@mui/icons-material/Create';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function CommunityPage() {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ function CommunityPage() {
   return (
     <div>
         <h2>실시간 HOT 게시물</h2>
-        <Community_modal />
+        <CommunityModal />
         <center>
             <Button color="success" sx={{mt: 3, mb: 3}} onClick={onWriteHandler}>
             <Fab color="success" size='medium'>
@@ -23,7 +23,7 @@ function CommunityPage() {
         </center>
         <Divider></Divider>
         <h2>동아리 후기</h2>
-        <Community_modal />
+        <CommunityModal />
     </div>
   )
 }

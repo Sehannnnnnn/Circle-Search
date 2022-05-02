@@ -1,22 +1,18 @@
 import { TextField, Box, Button, Container, Grid, Link } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { loginSuccess } from '../../../Slices/authSlice';
-// import MainBanner from '../Banner/MainBanner';
-// import session from 'express-session';
-// import { set } from 'date-fns';
 import axios from 'axios';
 
 import SingleListAvatar from '../../Avatar/SingleListAvatar';
+import KakaoLogin from './SocialLogin/KakaoLogin';
 
-function LoginPage(props) {
+function LoginPage() {
     let navigate = useNavigate();
-    
     const [userID, setuserID] = useState(sessionStorage.getItem("userID"));
     const [userPW, setuserPW] = useState("");
     const [isLogined, setisLogined] = useState(
         sessionStorage.getItem('islogined') == 'true');
+    const [userNickname, setuserNickname] = useState("");
     
     //userID로 현재 가입된 동아리 list 보기 [동아리 명, 동아리 로고] (api)
     const [showcirclelist, setshowcirclelist] = useState(false)
@@ -27,13 +23,14 @@ function LoginPage(props) {
     const onPWHandler = (event) => {
         setuserPW(event.currentTarget.value)
     }
+    //로그인 시
     const onSubmitHandler = (event) => {
         event.preventDefault();
+        //login process
         let body = {
             user_id : userID,
             user_password : userPW,
         }
-        console.log(body)
         axios.post("/user/login", body).then((res) => {
             if (res.data === 1){
                 console.log('success')
@@ -43,29 +40,35 @@ function LoginPage(props) {
             } else {
                 alert('로그인 실패!');
             }
-        }).catch((err) => console.log(err)).then(() => {
+        })
+        .catch((err) => console.log(err)).then(() => {
             window.location.href="/";
         })
     }
 
-    const logout = () => {
-        setisLogined(false);
-        sessionStorage.clear();
-    }    
-
+    //로그인 이후
+    const getUserNickname = () => {
+        let userid = sessionStorage.getItem('userID');
+        axios.get('/user/getNickname', {params: {user_id : userid}}).then((res) => {
+            setuserNickname(res.data);
+        })
+    }
 
     const openMyCircleList = () => {
         setshowcirclelist(true);
-    }
-
-    const moveToMyPage = () => {
-
     }
 
     const openCreateCircle = () => {
         navigate("/create/circle/new", {replace: true})
     }
         
+    useEffect(() => {
+        console.log('실행됨')
+      if (sessionStorage.getItem('userID') !== null) {
+          getUserNickname();
+      }
+    }, [])
+
     if (!isLogined) {
     return (
         <div>
@@ -97,14 +100,10 @@ function LoginPage(props) {
                         >
                             로그인 하기
                         </Button>
+                        <KakaoLogin />
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    아이디 찾기
-                                </Link>
-                            </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/regisrer1" variant="body2">
                                     회원가입 하기
                                 </Link>
                             </Grid>
@@ -131,7 +130,7 @@ function LoginPage(props) {
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={10} sx={{mr : 3}}>
-                    {sessionStorage.getItem('userID')} 님 <br></br>환영합니다.
+                    {userNickname} 님 <br></br>환영합니다.
                     </Grid>
                     <Grid item xs={12}>
                     <Button onClick={openMyCircleList} fullWidth variant='contained' color='success'>내 동아리</Button>

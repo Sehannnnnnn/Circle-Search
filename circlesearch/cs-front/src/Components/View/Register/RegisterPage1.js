@@ -3,6 +3,10 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Divider, Grid} from '@mui/material';
 import { Box } from '@mui/system';
+import kakao_start_png from './elements/kakao_login_medium_wide.png';
+import {
+    KAKAO_AUTH_URL_SIGNUP,
+  } from '../Login/SocialLogin/kakao_config'
 
 function RegisterPage1() {
     const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
@@ -54,7 +58,6 @@ function RegisterPage1() {
             user_password : userPW,
             user_email : userEmail,
         }
-        console.log(body)
         axios.post('/user/register1',body).then((response) => {
             if(response.status == 200) navigate(`../register2/${userID}`, {replace: true});
             else alert('error')
@@ -93,9 +96,14 @@ function RegisterPage1() {
             <h2>서클서치 회원가입</h2>
             <p>환영합니다! <br></br>서클서치가 당신과 함께 할 딱 맞는 동아리를 찾아드릴께요.</p>
             <Divider></Divider>
+            <h3>간편 회원가입</h3>
+                <a href = {KAKAO_AUTH_URL_SIGNUP}>
+                <img src={kakao_start_png}/>
+                </a>
+            <Divider sx={{mt:3}}></Divider>
             <Box component="form" onSubmit={onSubmitHandler} sx={{maxwith: 'sm'}}>
                 <Grid container rowspacing={1}>
-                <h3>회원 정보</h3>   
+                <h3>회원 정보 직접 입력</h3>   
                     <Grid item xs={12} sx={{mb: 1}}>
                         <TextField required margin="normal" label="아이디" variant="filled" fullWidth value={userID} color='success'
                         error={validateID()} onChange={onIdHandler} helperText ={validateID()? "아이디는 5~20자리 영문,숫자 입니다.": ""}/>
