@@ -47,4 +47,26 @@
         WHERE seq = #{seq}
           AND deleted = 'N'
     </select>
+
+    <select id="getBoardListNext" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        SELECT `seq`, `title`, `contents`, `id`, `count`
+        FROM Board_tb
+        WHERE 1 = 1
+        AND `deleted` = 'N'
+        <if test="lastSeq &gt; 0">
+            AND `seq` &lt; #{lastSeq}
+        </if>
+        ORDER BY `seq` DESC
+        LIMIT 0, #{size}
+    </select>
+
+    <select id="getBoardListPage" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        SELECT `seq`, `title`, `contents`, `id`, `count`
+        FROM Board_tb
+        WHERE 1 = 1
+          AND `deleted` = 'N'
+        ORDER BY `seq` DESC
+            LIMIT #{skip}, #{size}
+    </select>
+
 </mapper>

@@ -5,30 +5,30 @@
 
 <mapper namespace="com.capstone.CircleSearch.Model.dao.RequestDAO">
     <insert id="joinCircle" parameterType="String">
-        INSERT INTO ${url}Request_tb(user_id,goal,deleted)
-        VALUES (#{user_id},#{goal},'N')
+        INSERT INTO CircleRequest_tb(circle_name,user_id,goal,deleted)
+        VALUES (#{circle_name},#{user_id},#{goal},'N')
     </insert>
     <select id="confirmRequest" resultType="com.capstone.CircleSearch.Model.dto.RequestSelectDTO">
         SELECT user_id,goal
-        FROM  ${url}Request_tb
-        WHERE deleted = "N"
+        FROM  CircleRequest_tb
+        WHERE deleted = 'N' AND circle_name=#{circle_name}
     </select>
 
     <update id="agreeRequest" parameterType="String">
-        UPDATE ${url}Request_tb
+        UPDATE CircleRequest_tb
         SET deleted = 'Y'
-        WHERE user_id = #{user_id}
+        WHERE user_id = #{user_id} AND circle_name= #{circle_name}
     </update>
 
     <update id="rejectRequest" parameterType="String">
-        UPDATE ${url}Request_tb
+        UPDATE CircleRequest_tb
         SET deleted = 'R'
-        WHERE user_id = #{user_id}
+        WHERE user_id = #{user_id} AND circle_name =#{circle_name}
     </update>
 
     <insert id="registerCircle" parameterType="String">
-        INSERT INTO ${url}Circle_tb(user_id,manage_num,user_nickname,deleted)
-        VALUES (#{user_id},1,#{user_nickname},'N')
+        INSERT INTO MyCircle_tb(user_id,circle_name,url,grade)
+        VALUES (#{user_id},#{circle_name},#{url},1)
     </insert>
 
 

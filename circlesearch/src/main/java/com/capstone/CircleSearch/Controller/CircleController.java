@@ -128,6 +128,11 @@ public class CircleController {
     public List<String> getMangeCircle(@RequestParam String user_id) throws Exception{
         return circleDAO.getmanagecircle(user_id);
     }
+    @PutMapping("/put/usergrade")
+    public int putUser_grade(@RequestParam String id, @RequestParam String circle_name) throws Exception{
+        return circleDAO.editupgrade(id,circle_name);
+
+    }
 
 
 }
