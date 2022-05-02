@@ -1,7 +1,6 @@
 import React from 'react'
 import {Box} from '@mui/material'
 import Slider from 'react-slick';
-import { bgcolor } from '@mui/system';
 
 function MainBanner() {
     const settings = {

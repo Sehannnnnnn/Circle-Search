@@ -69,10 +69,6 @@ function LoginPage() {
       }
     }, [])
 
-    useEffect(() => {
-        console.log(userNickname);
-    }, [userNickname])
-    
     if (!isLogined) {
     return (
         <div>

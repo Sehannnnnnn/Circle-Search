@@ -2,7 +2,7 @@ import React from 'react'
 import CommunityModal from '../Home/CommunityModal'
 import {Divider, Fab, Button} from '@mui/material'
 import CreateIcon from '@mui/icons-material/Create';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function CommunityPage() {
     const navigate = useNavigate();
