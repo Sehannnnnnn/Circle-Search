@@ -102,8 +102,13 @@ public class CircleController {
         findDTO.setCollege(college);
         int a = findDAO.findCollegecode(findDTO);
         return circleDAO.selectCoCircle(a);
-
     }
+
+//    @GetMapping("/circleInfo")
+//    public UniCircleDTO getCircleInfo(@RequestParam String circle_url) throws Exception{
+//
+//    }
+
     @GetMapping("/check/grade") //관리자 맞으면 Y 아니면 N
     public String checkGrade(@RequestParam String user_id , @RequestParam String circle_name) throws Exception{
        int grade = circleDAO.checkMygrade(user_id,circle_name);

@@ -9,6 +9,10 @@ a:focus { text-decoration: none; }
 a:hover, a:active { text-decoration: none; }
 
 .wrapper {
+  background-color: rgba(232, 237, 234, 0.5);
+}
+
+.content_wrapper {
   max-width: 1920px;
   min-width: 720px;
   margin: 0 auto;
@@ -27,10 +31,12 @@ a:hover, a:active { text-decoration: none; }
 }
 
 .main_container {
-  min-width: 1200px;
+  padding-top: 20px;
+  min-width: 1280px;
   grid-column: 2/6;
   border-top: 0px;
   border-bottom: 0px;
+  background-color: rgba(255,255,255);
 }
 
 .right_sidebar {

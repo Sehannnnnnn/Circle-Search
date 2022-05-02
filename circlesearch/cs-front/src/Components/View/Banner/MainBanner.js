@@ -1,10 +1,14 @@
 import React from 'react'
-import {Box} from '@mui/material'
 import Slider from 'react-slick';
+import {Box} from '@mui/material'
+import imgA from './bannerImg/60545.png'
+import imgB from './bannerImg/89772.png'
+import imgC from './bannerImg/92407.png'
+import imgD from './bannerImg/92411.png'
+import imgE from './bannerImg/92537.png'
 
 function MainBanner() {
     const settings = {
-        dots: true,
         autoplay: true,
         autoplaySpeed : 7000,
         infinite: true,
@@ -14,31 +18,26 @@ function MainBanner() {
       };
   return (
     <div>
-        <h2>🔥 HOT 동아리</h2>
+      <Box sx={{mt: 2}}>
         <Slider {...settings}>
           <div>
-            <Box sx={{
-                height: 150,
-                bgcolor: 'greenyellow'
-            }}>1
-            </Box>
+            <img src={imgA} alt="imgA" width='100%'/>
           </div>
           <div>
-            <h3>2</h3>
+            <img src={imgB} alt="imgB" width='100%'/>
           </div>
           <div>
-            <h3>3</h3>
+            <img src={imgC} alt="imgC" width='100%'/>
           </div>
           <div>
-            <h3>4</h3>
+            <img src={imgD} alt="imgD" width='100%'/>
           </div>
           <div>
-            <h3>5</h3>
+            <img src={imgE} alt="imgE" width='100%'/>
           </div>
-          <div>
-            <h3>6</h3>
-          </div>
+        
         </Slider>
+        </Box>
       </div>
   )
 }

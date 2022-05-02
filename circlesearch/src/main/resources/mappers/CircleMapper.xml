@@ -15,6 +15,8 @@
         VALUES(#{region_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager})
     </insert>
 
+<!--    <select id="getCircleInfo" parameterType="String" resultType="com.capstone.CircleSearch.Model.dto.UniCircleDTO"-->
+
     <update id="createTable" parameterType="String" >
         CREATE table if not exists ${url}Circle_tb(
             `index` int NOT NULL AUTO_INCREMENT,

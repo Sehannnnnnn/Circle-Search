@@ -47,30 +47,29 @@ function CreateCirclePage(props) {
                     display: 'flex',
                     maxWidth: 'md',
                     flexDirection: 'column',
-                    padding: 5,
                 }}>
                     <h2>새로운 동아리 생성</h2>
-                    <p>서클서치에 동아리를 등록하고 새로운 여정을 시작해주세요!</p>
-                    <Divider></Divider>
+                    <Box sx={{fontSize: 20}}>서클서치에 동아리를 등록하세요!</Box>
+                    <Box sx={{my : 3, px : 5, py: 3, borderRadius: 2, display: 'flex', flexDirection: 'column', border: 'solid 10px rgba(237, 247, 241, 0.9)'}}>
                     <FormControl>
                     <FormLabel><h3>동아리 이름</h3></FormLabel>
                     <TextField required label="동아리 명" variant="standard" fullWidth value={circleName} color="success" onChange={onCircleNameHandler}></TextField>
                     </FormControl>
                     <FormControl>
                     <FormLabel><h4>매니저 계정 ID</h4></FormLabel>
-                    <TextField disabled label="매니저" variant="standard" fullWidth value={sessionStorage.getItem("userID")} color="success"></TextField>
+                    <TextField disabled variant="standard" fullWidth value={sessionStorage.getItem("userID")} color="success"></TextField>
                     </FormControl>
                     <FormLabel><h4>동아리 주소</h4></FormLabel>
                     <Grid sx={{borderBottom: 'solid grey 1px', bgcolor: '#F2F2F2'}} container>
                         <Grid sx={{pt: 3}}>
-                            <Box sx={{textAlign: 'right', fontSize: 'large', mr: 2, ml: 2}}>www.circlesearch.com/circle/</Box></Grid>
-                        <Grid item xs={7} >
-                        <TextField required label="동아리 주소" variant="standard" fullWidth value={circleAddress} color="success" error={validateAddress()} onChange={onCircleAddressHandler} helperText={validateAddress() ? "영어 또는 숫자로만 입력해주세요!" : ""}></TextField>
+                            <Box sx={{textAlign: 'right', fontSize: 'large', mr: 1, ml: 2}}>www.circlesearch.com/'co'또는'uni'/Circle/</Box></Grid>
+                        <Grid item xs={5} >
+                        <TextField required variant="outlined" fullWidth value={circleAddress} color="success" error={validateAddress()} onChange={onCircleAddressHandler} helperText={validateAddress() ? "영어 또는 숫자로만 입력해주세요!" : ""}></TextField>
                         </Grid>
                     </Grid>
                     <FormControl>
                     <FormLabel><h4>동아리 설명</h4></FormLabel>
-                    <TextField required label="동아리 설명" fullWidth multiline rows={5} value={circlePurpose} color="success" onChange={onCirclePurposeHandler}></TextField>
+                    <TextField required fullWidth multiline rows={5} value={circlePurpose} color="success" onChange={onCirclePurposeHandler}></TextField>
                     </FormControl>
                     <h3>동아리 구분 선택</h3>
                     <Grid container spacing={1}>
@@ -89,6 +88,7 @@ function CreateCirclePage(props) {
                     </Grid>
                     <Divider sx={{mt: 5}}></Divider>
                     {circleState === "" ? null : circleState === "연합" ? <CreateCircleUnion circleName={circleName} circlePurpose={circlePurpose} circleAddress={circleAddress}/> : <CreateCircleSchool circleName={circleName} circlePurpose={circlePurpose} circleAddress={circleAddress}/>}
+                    </Box>
                 </Box>
             </Container>
         </div>

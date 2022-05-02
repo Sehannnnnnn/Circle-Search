@@ -93,7 +93,7 @@ function CircleUnionPage() {
                 {circleList.map((circle, index) => (
                     <Box>
                         <Box sx={{m:3}}>
-                            <Grid container >
+                            <Grid container>
                                 <Grid item xs={1}>
                                     <Box sx={{color: 'success.main', margin: '0 auto', fontSize: 22, fontWeight: 'Bold', textAlign: 'center', lineHeight: '2'}}>{index+1}</Box></Grid>
                                 <Grid item xs={10}>
