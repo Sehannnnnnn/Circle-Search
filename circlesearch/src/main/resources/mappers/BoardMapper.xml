@@ -5,39 +5,68 @@
             parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO"
             useGeneratedKeys="true"
             keyProperty="seq">
-        INSERT INTO Board_tb(TITLE,CONTENTS,AUTHOR,PASSWORD)
-            VALUE (#{title}, #{contents}, #{author}, #{password})
+        INSERT INTO Board_tb(title,contents,id,password)
+            VALUE (#{title}, #{contents}, #{id}, #{password})
     </insert>
 
     <select id="getBoard" parameterType="Integer" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
-        SELECT SEQ,TITLE,CONTENTS,AUTHOR
+        SELECT seq,title,contents,id,count
         FROM Board_tb
-        WHERE SEQ = #{param}
-          AND DELETED = 'N'
+        WHERE seq = #{param}
+          AND deleted = 'N'
     </select>
     <update id="editBoard" parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO">
         UPDATE Board_tb
-        SET PASSWORD = PASSWORD
+        SET password = password
         <if test="title !=null">
-            , Title = #{title}
+            , title = #{title}
         </if>
         <if test="contents != null">
-            , CONTENTS =#{contents}
+            , contents =#{contents}
         </if>
-        <if test ="author != null">
-            , AUTHOR = #{author}
+        <if test ="id != null">
+            , id = #{id}
         </if>
         <if test ="deleted != null">
-            , DELETED =#{deleted}
+            , deleted =#{deleted}
         </if>
-        WHERE SEQ =#{seq}
+        WHERE seq =#{seq}
     </update>
 
     <update id="addBoardReadCount"
-            parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+            parameterType="int">
         UPDATE Board_tb
-        SET READS = READS+1
-        WHERE SEQ = #{seq}
-          AND DELETED ='N'
+        SET count = count+1
+        WHERE seq = #{seq}
+          AND deleted ='N'
     </update>
+
+    <select id="getReadCount" parameterType="int" resultType="int">
+        SELECT count
+        FROM Board_tb
+        WHERE seq = #{seq}
+          AND deleted = 'N'
+    </select>
+
+    <select id="getBoardListNext" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        SELECT `seq`, `title`, `contents`, `id`, `count`
+        FROM Board_tb
+        WHERE 1 = 1
+        AND `deleted` = 'N'
+        <if test="lastSeq &gt; 0">
+            AND `seq` &lt; #{lastSeq}
+        </if>
+        ORDER BY `seq` DESC
+        LIMIT 0, #{size}
+    </select>
+
+    <select id="getBoardListPage" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
+        SELECT `seq`, `title`, `contents`, `id`, `count`
+        FROM Board_tb
+        WHERE 1 = 1
+          AND `deleted` = 'N'
+        ORDER BY `seq` DESC
+            LIMIT #{skip}, #{size}
+    </select>
+
 </mapper>

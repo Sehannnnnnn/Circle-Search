@@ -79,4 +79,11 @@
         FROM MyCircle_tb
         WHERE user_id=#{user_id} AND grade >=2
     </select>
+
+   <update id="editupgrade" parameterType = "String">
+       UPDATE MyCircle_tb
+       SET grade = 2
+       WHERE user_id=#{user_id}
+        AND circle_name = #{circle_name}
+   </update>
 </mapper>

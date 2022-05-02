@@ -49,5 +49,15 @@
         WHERE interest_code=#{interest2}
     </select>
 
+    <select id="findCocircleurl" parameterType="String" resultType="String">
+        SELECT url
+        FROM CoCircle_tb
+        WHERE circle_name=#{circle_name}
+    </select>
+    <select id="findUnicircleurl" parameterType="String" resultType="String">
+        SELECT url
+        FROM UniCircle_tb
+        WHERE circle_name=#{circle_name}
+    </select>
 
 </mapper>

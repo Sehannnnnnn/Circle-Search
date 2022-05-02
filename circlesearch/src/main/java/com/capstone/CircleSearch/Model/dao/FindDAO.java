@@ -15,4 +15,6 @@ public interface FindDAO {
     String selectCategory2(int interest2) throws Exception;
     int findUserInterest1(String user_id) throws Exception;
     int findUserInterest2(String user_id) throws Exception;
+    String findCocircleurl(String circle_name) throws Exception;
+    String findUnicircleurl(String circle_name) throws Exception;
 }

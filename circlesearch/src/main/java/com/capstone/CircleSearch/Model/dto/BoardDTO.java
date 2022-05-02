@@ -18,5 +18,5 @@ public class BoardDTO {
     private String id;
     private String password;
     private String deleted = "N";
-    private int read =0;
+    private int count =0;
 }

@@ -6,13 +6,13 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RequestDAO {
-    int joinCircle(@Param("url") String url, String user_id, String goal) throws Exception;
+    int joinCircle(String circle_name, String user_id, String goal) throws Exception;
 
-    RequestSelectDTO confirmRequest(@Param("url") String url) throws Exception;
+    RequestSelectDTO confirmRequest(String circle_name) throws Exception;
 
-    int agreeRequest(@Param("url") String url, String user_id) throws Exception;
+    int agreeRequest(String circle_name, String user_id) throws Exception;
 
-    int rejectRequest(@Param("url") String url, String user_id) throws Exception;
+    int rejectRequest(String circle_name, String user_id) throws Exception;
 
-    int registerCircle(@Param("url") String url, String user_id, String user_nickname) throws Exception;
+    int registerCircle(String circle_name, String user_id, String url) throws Exception;
 }
