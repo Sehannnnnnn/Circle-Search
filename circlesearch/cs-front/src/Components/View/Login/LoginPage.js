@@ -1,4 +1,4 @@
-import { TextField, Box, Button, Container, Grid, Link } from '@mui/material';
+import { TextField, Box, Button, Container, Grid, Link, Divider } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -130,7 +130,12 @@ function LoginPage() {
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={10} sx={{mr : 3}}>
-                    {userNickname} 님 <br></br>환영합니다.
+                    <div style={{fontSize : 20}}>
+                    <b>{userNickname} 님</b><br></br>환영합니다.
+                    </div>
+                    </Grid>
+                    <Grid item xs = {12}>
+                    <Divider></Divider>
                     </Grid>
                     <Grid item xs={12}>
                     <Button onClick={openMyCircleList} fullWidth variant='contained' color='success'>내 동아리</Button>

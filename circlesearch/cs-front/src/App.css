@@ -10,7 +10,7 @@ a:hover, a:active { text-decoration: none; }
 
 .wrapper {
   max-width: 1920px;
-  width: 100%;
+  min-width: 720px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -20,13 +20,14 @@ a:hover, a:active { text-decoration: none; }
 }
 
 .left_sidebar {
+  min-width: 320px;
   grid-column: 1;
-  border-right: 1px solid grey;
   border-top: 0px;
   border-bottom: 0px;
 }
 
 .main_container {
+  min-width: 1200px;
   grid-column: 2/6;
   border-top: 0px;
   border-bottom: 0px;

@@ -29,13 +29,12 @@ function App() {
     <div className="App">
     <TopPannel/>
     <div className='wrapper'>
-    <Container maxWidth= "sm" className='left_sidebar'>
+    <Container maxWidth= "sm" minWidth="sm" className='left_sidebar'>
       <LoginPage/>
     </Container>
-    <Container maxWidth="lg" className='main_container'>
+    <Container maxWidth="lg" minWidth="lg" fixed className='main_container'>
     <Routes>
         <Route exact path="/" element={<HomePage/>}/>
-
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/oauth/kakao/:use" element={<Auth />}/>
         <Route path="/register1" element={<RegisterPage1/>}/>
@@ -54,7 +53,7 @@ function App() {
         <Route path="/Circle/manage/:circleID/:userID" element={<CircleSiteManage/>}/>
     </Routes>
     </Container>
-    <Container maxWidth= "sm" className='right_sidebar'>
+    <Container maxWidth= "sm" minWidth="sm" className='right_sidebar'>
     </Container>
     </div>
     <Footer/>

@@ -78,7 +78,7 @@ public class CircleController {
         return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
     }
 
-
+    //get circle by interest and region
     @GetMapping("/circle/uni")
     public List<UniCircleDTO> getUniCircle(@RequestParam String interest, @RequestParam String region) throws Exception {
         int iCode;
