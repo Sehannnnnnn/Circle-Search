@@ -25,25 +25,27 @@ public class RequestController {
     private FindDAO findDAO;
 
    @GetMapping("Circle/join")
-    public int wantJoin(@RequestParam String url,@RequestParam String user_id, @RequestParam String goal) throws Exception {
-       return requestDAO.joinCircle(url,user_id,goal);
+    public int wantJoin(@RequestParam String circle_name,@RequestParam String user_id, @RequestParam String goal) throws Exception {
+       return requestDAO.joinCircle(circle_name,user_id,goal);
    }
-   @GetMapping("Circle/agree")
-    public RequestSelectDTO confirm(@PathVariable String url) throws Exception{
-       return requestDAO.confirmRequest(url);
+   @GetMapping("Circle/agree") // 신청한 사람들 보기
+    public RequestSelectDTO confirm(@RequestParam String circle_name) throws Exception{
+       return requestDAO.confirmRequest(circle_name);
    }
-    @PostMapping("Circle/agree")
-    public int agreeJoin(@PathVariable String url,@RequestParam String user_id, @RequestParam String agreement) throws Exception{
+    @PostMapping("Circle/agree")//agreement는 수락(Y) 아니오(N) --> 수락 누르면 MyCircle_tb에 insert
+    public int agreeJoin(@RequestParam String circle_name,@RequestParam String user_id, @RequestParam String agreement) throws Exception{
         String y = "Y";
+        String url = null;
         if(y.equals(agreement)){
-            FindDTO findDTO = new FindDTO();
-            findDTO.setId(user_id);
-            String nickname = findDAO.findUsernickname(findDTO);
-            requestDAO.agreeRequest(url, user_id);
-            return requestDAO.registerCircle(url, user_id,nickname);
+            requestDAO.agreeRequest(circle_name, user_id);
+            if(findDAO.findCocircleurl(circle_name)!=null){
+                url = findDAO.findCocircleurl(circle_name);}
+            else if(findDAO.findUnicircleurl(circle_name)!=null){
+                url= findDAO.findUnicircleurl(circle_name);}
+            return requestDAO.registerCircle(circle_name,user_id,url);
         }
 
-        return requestDAO.rejectRequest(url, user_id);
+        return requestDAO.rejectRequest(circle_name, user_id);
     }
 
 }
