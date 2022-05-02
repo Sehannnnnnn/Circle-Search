@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import Community_mini from './Community_mini'
+import CommunityMini from './CommunityMini'
 import {Grid} from '@mui/material'
 
-function Community_modal() {
+function CommunityModal() {
 
   //커뮤니티 별 핫게시글 목록을 띄울 필요함 API
   const [commuBoardList, setcommuBoardList] = useState([
@@ -37,7 +37,7 @@ function Community_modal() {
       <Grid container rowSpacing={2}>
         {commuBoardList.map((Board)=>(
           <Grid item xs = {12}>
-            <Community_mini id={Board.id} title={Board.title} writer={Board.writer} watches={Board.watches} contents={Board.contents}/>
+            <CommunityMini id={Board.id} title={Board.title} writer={Board.writer} watches={Board.watches} contents={Board.contents}/>
           </Grid>
         ))}
       </Grid>
@@ -45,4 +45,4 @@ function Community_modal() {
   )
 }
 
-export default Community_modal
+export default CommunityModal

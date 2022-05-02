@@ -7,9 +7,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {Link} from 'react-router-dom';
 
@@ -27,7 +25,6 @@ const pages = [{
    label : '회원가입',
    link : '/register1'
  }];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Container, Divider, Grid, TextField, Button, Checkbox,  FormControlLabel, FormLabel, FormControl, MenuItem, autocompleteClasses} from '@mui/material';
+import { Container, Divider, Grid, TextField, Button, Checkbox,  FormControlLabel, FormLabel, FormControl, MenuItem } from '@mui/material';
 import {Box} from '@mui/system';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SchoolIcon from '@mui/icons-material/School';
@@ -75,20 +75,20 @@ function CreateCirclePage(props) {
                     <h3>동아리 구분 선택</h3>
                     <Grid container spacing={1}>
                         <Grid item xs = {6}>
-                            <Button fullWidth variant={circleState == "연합" ? 'contained' : 'outlined'} color='success' sx={{
+                            <Button fullWidth variant={circleState === "연합" ? 'contained' : 'outlined'} color='success' sx={{
                                 height: 100,
                                 fontSize: 'large',
                             }} endIcon={<GroupsIcon/>} onClick={onClickStateHandler} value="연합">연합 동아리 </Button>
                         </Grid>
                         <Grid item xs = {6}>
-                        <Button fullWidth variant={circleState == "교내" ? 'contained' : 'outlined'} color='success'sx={{
+                        <Button fullWidth variant={circleState === "교내" ? 'contained' : 'outlined'} color='success'sx={{
                                 height: 100,
                                 fontSize: 'large',
                             }} endIcon={<SchoolIcon/>} onClick={onClickStateHandler} value="교내">교내 동아리 </Button>
                         </Grid>
                     </Grid>
                     <Divider sx={{mt: 5}}></Divider>
-                    {circleState == "" ? null : circleState == "연합" ? <CreateCircleUnion circleName={circleName} circlePurpose={circlePurpose} circleAddress={circleAddress}/> : <CreateCircleSchool circleName={circleName} circlePurpose={circlePurpose} circleAddress={circleAddress}/>}
+                    {circleState === "" ? null : circleState === "연합" ? <CreateCircleUnion circleName={circleName} circlePurpose={circlePurpose} circleAddress={circleAddress}/> : <CreateCircleSchool circleName={circleName} circlePurpose={circlePurpose} circleAddress={circleAddress}/>}
                 </Box>
             </Container>
         </div>
@@ -98,7 +98,7 @@ function CreateCirclePage(props) {
 export default CreateCirclePage
 
 function check1selected(arr) {
-    if (arr.length != 1) {
+    if (arr.length !== 1) {
         alert('분야 또는 지역을 하나씩만 선택해주세요!')
         return false;
     }
@@ -128,7 +128,7 @@ function CreateCircleUnion(props) {
             event.target.name
         ])
         } else {
-            const newArr = region.filter(reg => reg != event.currentTarget.name);
+            const newArr = region.filter(reg => reg !== event.currentTarget.name);
             setregion(newArr)
         }
     }
@@ -173,7 +173,7 @@ function CreateCircleUnion(props) {
             purpose : circleInfo.CirclePurpose
         }
         axios.post('/circle/register/UniCircle', body).then((res) => {
-            if (res.data == 1) {setmodalOpen(true);}
+            if (res.data === 1) {setmodalOpen(true);}
             else {alert('오류발생');}
         });
         setmodalOpen(true)
@@ -273,7 +273,7 @@ function CreateCircleSchool(props) {
             purpose : circleInfo.CirclePurpose,
         }
         axios.post('/circle/register/CoCircle', body).then((res) => {
-            if (res.data == 1) {setmodalOpen(true);}
+            if (res.data === 1) {setmodalOpen(true);}
             else {alert('오류발생');}
         });
     }

@@ -62,7 +62,7 @@ public class UserController {
         return checkIdDAO.checkUserid(userID);
     }
 
-    //실험용 --> 작동합니다 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+
     @GetMapping("/findcode")
     public int findcode(@RequestBody InputUserDTO inputUserDTO) throws Exception{
         FindDTO findDTO = new FindDTO();
@@ -134,4 +134,10 @@ public class UserController {
        return category;
     }
 
+    @GetMapping("/user/getNickname")
+    public String getUserNickname(@RequestParam String user_id) throws Exception{
+        FindDTO findDTO = new FindDTO(null, null, null, user_id);
+        return findDAO.findUsernickname(findDTO);
+    }
 }
+

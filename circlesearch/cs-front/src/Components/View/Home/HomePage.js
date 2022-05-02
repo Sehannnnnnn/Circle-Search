@@ -4,19 +4,20 @@ import {Divider, Grid} from '@mui/material'
 import CircleInSchoolPage from '../CircleInSchool/CircleInSchoolPage';
 import MainBanner from '../Banner/MainBanner';
 import CircleInterest from '../Home/CircleInterest';
-import Community_modal from './Community_modal';
+import CommunityModal from './CommunityModal';
 
 function HomePage() {
   const [message, setMessage]=useState([]);
   const [userID, setuserID] = useState("");
   const [isLogined, setisLogined] = useState('false');
 
+
     useEffect(()=>{
       axios.get("/hello")
           .then((res)=>{
             setMessage(res.data)
           });
-      if (sessionStorage.getItem('islogined') == 'true') {
+      if (sessionStorage.getItem('islogined') === 'true') {
         setuserID(sessionStorage.getItem('userID'));
         setisLogined(sessionStorage.getItem('logined'));
       }
@@ -43,7 +44,7 @@ function HomePage() {
           </Grid>
           <Grid item xs={12} sx= {{mb: 3}}>
             <h2>실시간 커뮤니티 게시글</h2>
-            <Community_modal/>
+            <CommunityModal />
             <Divider></Divider>
           </Grid>
         </Grid>

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Box, Grid} from '@mui/material'
 
-function CircleInterest_mini(props) {
+function CircleInterestMini(props) {
     const [CircleInfo, setCircleInfo] = useState({
         id : props.id,
         name : props.name,
@@ -37,4 +37,4 @@ function CircleInterest_mini(props) {
   )
 }
 
-export default CircleInterest_mini
+export default CircleInterestMini
