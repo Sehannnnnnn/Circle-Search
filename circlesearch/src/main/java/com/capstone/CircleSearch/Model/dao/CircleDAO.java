@@ -21,5 +21,6 @@ public interface CircleDAO {
     List<String> getcirclename(String user_id) throws Exception;
     List<String> getmanagecircle(String user_id) throws Exception;
     int editupgrade(String user_id, String circle_name) throws Exception;
-
+    CoCircleDTO getCircleCoInfo(String circle_url) throws Exception;
+    UniCircleDTO getCircleUniInfo(String circle_url) throws Exception;
 }

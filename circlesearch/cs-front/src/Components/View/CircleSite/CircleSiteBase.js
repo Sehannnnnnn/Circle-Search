@@ -5,21 +5,16 @@ import CommunityModal from '../Home/CommunityModal'
 import imgB from '../../../static/img/bbb.jpeg'
 import CircleInterestMini from '../Home/CircleInterestMini'
 import {useParams} from 'react-router-dom'
+import {INTEREST_CODE, REGION_CODE} from '../../../static/type_codes.js'
+import axios from 'axios'
+import { red } from '@mui/material/colors'
 
 function CircleSiteBase() {
     // param에 따라 circleInfo 가져오기
     const params = useParams();
-    const [Circle, setCircle] = useState(params.CircleID);
-    
-    const [circleInfo, setcircleInfo] = useState({
-        Name:"DDC",
-        Type: "연합",
-        Manager: "micke2",
-        Region:["서울"],
-        School:"",
-        Interest: ["IT/경영"],
-        Purpose:"서울권 개발자 연합 동아리 입니다.",
-    })
+    const [circleState, setcircleState] = useState({});
+    const [circleInfo, setcircleInfo] = useState({})
+    const [circleCollege, setcircleCollege] = useState("");
 
     const [Gallery, setGallery] = useState([
         {id : 1, name: '게시물1', img: 'img', logo: 'logo'},
@@ -28,11 +23,35 @@ function CircleSiteBase() {
         {id : 4, name: '게시물4', img: 'img', logo: 'logo'},
     ])
 
+    
     useEffect(() => {
-        window.scrollTo(0, 0)
+        setcircleState({Type: params.UniCo, Url: params.circleUrl});
     }, [])
     
+    useEffect(() => {
+        if (circleState.Type === undefined) return;
+        const REQUEST_URL = `/getCircle${circleState.Type}Info`;
+        const fetchCircleInfo = async() => {
+            axios.get(REQUEST_URL, {params : { url : circleState.Url}})
+            .then((res) => setcircleInfo(res.data))
+            .catch((err) => console.log(err));
+        }
+        fetchCircleInfo();
+    }, [circleState])
+    
 
+    useEffect(() => {
+        if(circleInfo.college_code === undefined) return;
+        const getCollegeName = async() => {
+            if (circleState.Type !== 'co') return;
+            axios.get('/collegeName', {params : { college_code : circleInfo.college_code }}).
+            then((res) => {
+                setcircleCollege(res.data);
+            })
+        }
+        getCollegeName();
+    }, [circleInfo])
+    
   return (
     <div>
         <Container maxWidth = "xl"
@@ -43,19 +62,19 @@ function CircleSiteBase() {
             <Box sx={{display:'grid', gridAutoColumns: '1fr', gap: 2}} >
                 <Box xs={{gridRow: '1', gridColumn: '1'}}>
                     <Stack spacing={3} sx={{mt: 5}}>
-                            <Avatar alt="circleMainIMG" src={imgA} sx={{
-                                width:'70%', height: '70%', m: '0 auto',
+                            <Avatar alt="circleMainIMG" sx={{
+                                width:200, height: 200, m: '0 auto',
                             }}></Avatar>
-                            <h2>{circleInfo.Name}</h2>
+                            <h2>{circleInfo.circle_name}</h2>
                             <Divider></Divider>
                             <ul style={{lineHeight: '140%', fontSize: 18}}>
-                                <li>구분 : {circleInfo.Type}동아리</li>
-                                <li>{circleInfo.Type === "연합" ? `지역 : ${circleInfo.Region.toString()}` : `학교 : ${circleInfo.School}`}</li>
-                                <li>분야 : {circleInfo.Interest.toString()}</li>
-                                <li>매니저 : {circleInfo.Manager}</li>
+                            <li>{circleState.Type === "uni" ? `지역 : ${REGION_CODE[circleInfo.region_code]}` : `학교 : ${circleCollege}`}</li>
+                                <li>{circleState.Type === 'uni' ? "연합" : "교내"}동아리</li>
+                                <li>{INTEREST_CODE[circleInfo.interest_code]}</li>
+                                <li>매니저 : {circleInfo.manager}</li>
                             </ul>
                             <h3>동아리 소개글</h3>
-                            <Box sx={{width: '100%', backgroundColor:'#F2F2F2', p: 2}}>{circleInfo.Purpose}</Box>
+                            <Box sx={{width: '100%', backgroundColor:'#F2F2F2', p: 2}}>{circleInfo.purpose}</Box>
                             <Grid container columnGap={2}>
                                 <Grid item xs={5}>
                                     <Button fullWidth variant='contained' color='success'>가입 신청</Button>
