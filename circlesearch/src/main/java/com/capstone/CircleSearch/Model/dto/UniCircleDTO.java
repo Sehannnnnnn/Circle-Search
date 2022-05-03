@@ -16,7 +16,8 @@ public class UniCircleDTO {
     private int region_code;
     private String circle_name;
     private String purpose;
-    private byte[] image;
     private String url;
     private String manager;
+    private String filename;
+    private String filepath;
 }

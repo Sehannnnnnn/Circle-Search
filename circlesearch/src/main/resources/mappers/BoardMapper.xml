@@ -5,8 +5,8 @@
             parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO"
             useGeneratedKeys="true"
             keyProperty="seq">
-        INSERT INTO Board_tb(title,contents,id,password)
-            VALUE (#{title}, #{contents}, #{id}, #{password})
+        INSERT INTO Board_tb(title,contents,id,filename,filepath)
+            VALUE (#{title},#{contents},#{id},#{filename},#{filepath})
     </insert>
 
     <select id="getBoard" parameterType="Integer" resultType="com.capstone.CircleSearch.Model.dto.BoardDTO">
@@ -17,15 +17,12 @@
     </select>
     <update id="editBoard" parameterType="com.capstone.CircleSearch.Model.dto.BoardDTO">
         UPDATE Board_tb
-        SET password = password
+        SET id=#{id}
         <if test="title !=null">
             , title = #{title}
         </if>
         <if test="contents != null">
             , contents =#{contents}
-        </if>
-        <if test ="id != null">
-            , id = #{id}
         </if>
         <if test ="deleted != null">
             , deleted =#{deleted}

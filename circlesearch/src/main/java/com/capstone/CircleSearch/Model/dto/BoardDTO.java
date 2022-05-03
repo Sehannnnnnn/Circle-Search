@@ -19,4 +19,6 @@ public class BoardDTO {
     private String password;
     private String deleted = "N";
     private int count =0;
+    private String filename = "";
+    private String filepath = "";
 }
