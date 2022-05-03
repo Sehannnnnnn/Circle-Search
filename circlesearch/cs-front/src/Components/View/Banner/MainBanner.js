@@ -1,6 +1,5 @@
 import React from 'react'
 import Slider from 'react-slick';
-import {Box} from '@mui/material'
 import imgA from './bannerImg/60545.png'
 import imgB from './bannerImg/89772.png'
 import imgC from './bannerImg/92407.png'
@@ -18,7 +17,6 @@ function MainBanner() {
       };
   return (
     <div>
-      <Box sx={{mt: 2}}>
         <Slider {...settings}>
           <div>
             <img src={imgA} alt="imgA" width='100%'/>
@@ -37,7 +35,6 @@ function MainBanner() {
           </div>
         
         </Slider>
-        </Box>
       </div>
   )
 }

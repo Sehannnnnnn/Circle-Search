@@ -5,6 +5,8 @@ import com.capstone.CircleSearch.Model.dao.FindDAO;
 import com.capstone.CircleSearch.Model.dto.*;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +45,6 @@ public class CircleController {
     @PostMapping("/circle/register/CoCircle")
     public int insertCircle(@RequestBody InputCircleDTO inputCircleDTO
     )throws  Exception{
-
         FindDTO findDTO = new FindDTO();
         findDTO.setCollege(inputCircleDTO.getCollege());
         findDTO.setInterest(inputCircleDTO.getInterest());
@@ -60,7 +61,6 @@ public class CircleController {
         //위의 리턴값에는 동아리 페이지를 만들 유저의 아이디,관리자 등급으로 바로 insert시키는거로 해보자. 
 
     }
-
 
     @PostMapping("/circle/register/UniCircle")
     public int insertUniCircle(@RequestBody InputCircleDTO inputCircleDTO) throws Exception{
@@ -93,8 +93,6 @@ public class CircleController {
         return circleDAO.selectUniCircle(iCode, rCode);
     }
 
-
-
     //4.	School로 교내동아리 정보 가져오는 API
     @GetMapping("circle/co")
     public List<CoCircleDTO> getCoCircle(@RequestParam String college) throws Exception{
@@ -103,11 +101,6 @@ public class CircleController {
         int a = findDAO.findCollegecode(findDTO);
         return circleDAO.selectCoCircle(a);
     }
-
-//    @GetMapping("/circleInfo")
-//    public UniCircleDTO getCircleInfo(@RequestParam String circle_url) throws Exception{
-//
-//    }
 
     @GetMapping("/check/grade") //관리자 맞으면 Y 아니면 N
     public String checkGrade(@RequestParam String user_id , @RequestParam String circle_name) throws Exception{
@@ -121,6 +114,7 @@ public class CircleController {
        }
        return manager;
     }
+
     @GetMapping("/check/member") // circle_name입력 --> 회원아이디, 등급 나오는 API
     public List<MyCircleDTO> checkCirclemember(@RequestParam String circle_name) throws Exception{
         return circleDAO.circlemember(circle_name);
@@ -136,8 +130,18 @@ public class CircleController {
     @PutMapping("/put/usergrade")
     public int putUser_grade(@RequestParam String id, @RequestParam String circle_name) throws Exception{
         return circleDAO.editupgrade(id,circle_name);
-
     }
 
+    @GetMapping("/getCirclecoInfo")
+    public ResponseEntity<CoCircleDTO> getInfoCircleCo(@RequestParam String url) throws Exception{
+        CoCircleDTO circleInfo = circleDAO.getCircleCoInfo(url);
+        return new ResponseEntity<>(circleInfo, HttpStatus.OK);
+    }
+
+    @GetMapping("/getCircleuniInfo")
+    public ResponseEntity<UniCircleDTO> getInfoCircleUni(@RequestParam String url) throws Exception{
+        UniCircleDTO circleInfo = circleDAO.getCircleUniInfo(url);
+        return new ResponseEntity<>(circleInfo, HttpStatus.OK);
+    }
 
 }

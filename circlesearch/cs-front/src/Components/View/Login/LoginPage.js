@@ -63,7 +63,6 @@ function LoginPage() {
     }
         
     useEffect(() => {
-        console.log('실행됨')
       if (sessionStorage.getItem('userID') !== null) {
           getUserNickname();
       }

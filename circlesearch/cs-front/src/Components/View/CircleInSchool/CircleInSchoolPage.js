@@ -57,7 +57,7 @@ if(isLogined === 'true') {
                                         WebkitLineClamp: '2',
                                         WebkitBoxOrient: 'vertical',
                                     }}>
-                                        <a href={"../Circle/" + circle.url}>
+                                        <a href={"../circle/co/" + circle.url}>
                                         {circle.circle_name}
                                         </a>
                                     </Typography>

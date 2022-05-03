@@ -48,7 +48,6 @@ public class BoardController {
         if ((param.getId() == null) || (param.getContents() == null) || (param.getPassword() == null) || (param.getTitle() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         param.setSeq(seq); // 조회할 게시물 번호 지정
         BoardDTO board = boardDAO.getBoard(param);
         if (board == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -66,11 +65,9 @@ public class BoardController {
         if (param.getPassword() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         param.setSeq(seq); // 조회할 게시물 번호 지정
         BoardDTO board = boardDAO.getBoard(param);
         if (board == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         board.setDeleted("Y");
         boardDAO.editBoard(board);
 

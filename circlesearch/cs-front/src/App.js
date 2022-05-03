@@ -50,14 +50,14 @@ function App() {
         <Route path="/community" element={<CommunityPage/>}/>
         <Route path="/community/write" element={<CommunityWritePage/>}/>
         <Route path="/create/circle/new" element={<CreateCirclePage/>}/>
-        <Route path="/Circle/:UniCo/:circleUrl" element={<CircleSiteBase/>}/>
-        <Route path="/Circle/manage/:circleID/:userID" element={<CircleSiteManage/>}/>
+        <Route path="/circle/:UniCo/:circleUrl" element={<CircleSiteBase/>}/>
+        <Route path="/circle/manage/:circleID/:userID" element={<CircleSiteManage/>}/>
     </Routes>
     </Container>
     <Container maxWidth= "sm" minWidth="sm" className='right_sidebar'>
     </Container>
     </div>
-    <Footer/>
+    <Footer/>ㅞㅡ 
     </div>
     </div>
   );

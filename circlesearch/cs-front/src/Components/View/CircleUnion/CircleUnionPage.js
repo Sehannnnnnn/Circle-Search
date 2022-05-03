@@ -1,12 +1,11 @@
-import React,{useState, useEffect} from 'react'
-import {Box, Divider, Stack, Grid, Typography, Avatar} from '@mui/material'
+import React,{useState, useEffect} from 'react';
+import {Box, Divider, Stack, Grid, Typography, Avatar} from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import axios from 'axios';
-
-
+import {INTEREST_CODE, REGION_CODE} from '../../../static/type_codes.js'
 function CircleUnionPage() {
     const [circleList, setcircleList] = useState([]);
     const [interests, setinterests] = useState([]);
@@ -106,7 +105,7 @@ function CircleUnionPage() {
                                         WebkitLineClamp: '2',
                                         WebkitBoxOrient: 'vertical',
                                     }}>
-                                        <a href={"../Circle/" + circle.url}>
+                                        <a href={"../circle/uni/" + circle.url}>
                                         {circle.circle_name}
                                         </a>
                                     </Typography>
