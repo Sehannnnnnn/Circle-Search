@@ -6,13 +6,13 @@
 <mapper namespace="com.capstone.CircleSearch.Model.dao.CircleDAO">
 
     <insert id="insertCoCircle" parameterType="com.capstone.CircleSearch.Model.dto.CoCircleDTO" keyProperty="index">
-        INSERT INTO CoCircle_tb(college_code , interest_code,  circle_name,purpose,url,manager)
-        VALUES(#{college_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager})
+        INSERT INTO CoCircle_tb(college_code , interest_code,  circle_name,purpose,url,manager,filename,filepath)
+        VALUES(#{college_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager},#{filename},#{filepath})
     </insert>
 
     <insert id="insertUniCircle" parameterType="com.capstone.CircleSearch.Model.dto.UniCircleDTO" keyProperty="index">
-        INSERT INTO UniCircle_tb(region_code , interest_code,  circle_name,purpose,url,manager)
-        VALUES(#{region_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager})
+        INSERT INTO UniCircle_tb(region_code , interest_code,  circle_name,purpose,url,manager,filename,filepath)
+        VALUES(#{region_code}, #{interest_code},#{circle_name},#{purpose},#{url},#{manager},#{filename},#{filepath})
     </insert>
 
     <update id="createTable" parameterType="String" >
