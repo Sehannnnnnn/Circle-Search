@@ -2,17 +2,6 @@ import React,{useState} from 'react'
 import {Box, Typography} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 
-const LINES_TO_SHOW = 2;
-
-const useStyles = makeStyles({
-  multiLineEllipsis: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    display: "-webkit-box",
-    "-webkit-line-clamp": LINES_TO_SHOW,
-    "-webkit-box-orient": "vertical"
-  }
-});
 
 function CircleInterestMini(props) {
     const [CircleInfo, setCircleInfo] = useState({
