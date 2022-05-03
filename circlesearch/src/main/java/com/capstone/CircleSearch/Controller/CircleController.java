@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @MapperScan(basePackages = "com.capstone.CircleSearch.Model.dao")
@@ -43,8 +46,12 @@ public class CircleController {
 
 
     @PostMapping("/circle/register/CoCircle")
-    public int insertCircle(@RequestBody InputCircleDTO inputCircleDTO
-    )throws  Exception{
+    public int insertCircle(InputCircleDTO inputCircleDTO , MultipartFile file) throws  Exception{
+        String projectPath = "/Users/gimminsu/Capstone/Circle-Search/circlesearch/src/main/resources/static/files/Cocircle";
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid + "_" + file.getOriginalFilename();
+        File saveFile = new File(projectPath, fileName);
+        file.transferTo(saveFile);
         FindDTO findDTO = new FindDTO();
         findDTO.setCollege(inputCircleDTO.getCollege());
         findDTO.setInterest(inputCircleDTO.getInterest());
@@ -52,18 +59,23 @@ public class CircleController {
         int a = findDAO.findCollegecode(findDTO);
         int b = findDAO.findInterestcode(findDTO);
         String c = String.valueOf(findDAO.findUsernickname(findDTO));
-        final CoCircleDTO param = new CoCircleDTO(0,a,b, inputCircleDTO.getCircle_name(), inputCircleDTO.getPurpose(), null, inputCircleDTO.getUrl(),inputCircleDTO.getId());
-        circleDAO.insertCoCircle(param);
+        final CoCircleDTO param = new CoCircleDTO(0,a,b, inputCircleDTO.getCircle_name(), inputCircleDTO.getPurpose(), inputCircleDTO.getUrl(),inputCircleDTO.getId(),fileName,"/files/Cocircle/"+fileName);
         circleDAO.storeMyCircle(inputCircleDTO.getId(),inputCircleDTO.getCircle_name(),inputCircleDTO.getUrl());
-        circleDAO.createTable(inputCircleDTO.getUrl());
-        circleDAO.createRequestTable(inputCircleDTO.getUrl());
-        return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
+        return circleDAO.insertCoCircle(param);
         //위의 리턴값에는 동아리 페이지를 만들 유저의 아이디,관리자 등급으로 바로 insert시키는거로 해보자. 
 
     }
 
     @PostMapping("/circle/register/UniCircle")
-    public int insertUniCircle(@RequestBody InputCircleDTO inputCircleDTO) throws Exception{
+    public int insertUniCircle(@RequestBody InputCircleDTO inputCircleDTO ,MultipartFile file) throws Exception{
+
+        String projectPath = "/Users/gimminsu/Capstone/Circle-Search/circlesearch/src/main/resources/static/files/Unicircle";
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid + "_" + file.getOriginalFilename();
+        File saveFile = new File(projectPath, fileName);
+        file.transferTo(saveFile);
+
+
         FindDTO findDTO = new FindDTO();
         findDTO.setInterest(inputCircleDTO.getInterest());
         findDTO.setRegion(inputCircleDTO.getRegion());
@@ -71,11 +83,9 @@ public class CircleController {
         int a = findDAO.findInterestcode(findDTO);
         int b = findDAO.findRegioncode(findDTO);
         String c = String.valueOf(findDAO.findUsernickname(findDTO));
-        final UniCircleDTO param = new UniCircleDTO(0,a,b, inputCircleDTO.getCircle_name(), inputCircleDTO.getPurpose(), null, inputCircleDTO.getUrl(),inputCircleDTO.getId());
-        circleDAO.insertUniCircle(param);
+        final UniCircleDTO param = new UniCircleDTO(0,a,b, inputCircleDTO.getCircle_name(), inputCircleDTO.getPurpose(), inputCircleDTO.getUrl(),inputCircleDTO.getId(),fileName,"/files/Unicircle/"+fileName);
         circleDAO.storeMyCircle(inputCircleDTO.getId(),inputCircleDTO.getCircle_name(),inputCircleDTO.getUrl());
-        circleDAO.createTable(inputCircleDTO.getUrl());
-        return circleDAO.insertManager(inputCircleDTO.getUrl(), inputCircleDTO.getId(),c);
+        return circleDAO.insertUniCircle(param);
     }
 
     //get circle by interest and region
@@ -128,8 +138,8 @@ public class CircleController {
         return circleDAO.getmanagecircle(user_id);
     }
     @PutMapping("/put/usergrade")
-    public int putUser_grade(@RequestParam String id, @RequestParam String circle_name) throws Exception{
-        return circleDAO.editupgrade(id,circle_name);
+    public int putUser_grade(@RequestParam String user_id, @RequestParam String circle_name) throws Exception{
+        return circleDAO.editupgrade(user_id,circle_name);
     }
 
     @GetMapping("/getCirclecoInfo")
