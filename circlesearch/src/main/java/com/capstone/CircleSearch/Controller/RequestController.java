@@ -24,7 +24,7 @@ public class RequestController {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private FindDAO findDAO;
 
-   @GetMapping("Circle/join")
+   @PostMapping("Circle/join")
     public int wantJoin(@RequestParam String circle_name,@RequestParam String user_id, @RequestParam String goal) throws Exception {
        return requestDAO.joinCircle(circle_name,user_id,goal);
    }
