@@ -27,7 +27,7 @@ function SingleListAvatar(props) {
 
     if (list.length === 0) {
       return (
-          <Grid item xs={12} sx={{alig }}>
+          <Grid item xs={12} sx={{mt:2}}>
           가입된 동아리가 <br/>
           없습니다!
           </Grid>
